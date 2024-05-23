@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    android:background="#015C91"
+    tools:context=".ui.home.HomeFragment">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="19dp">
+
+            <ImageView
+                android:id="@+id/img_profile"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama"
+                android:textSize="10sp"
+                android:layout_marginStart="11dp"
+                android:layout_marginTop="5dp"
+                app:layout_constraintStart_toEndOf="@id/img_profile"
+                app:layout_constraintTop_toTopOf="@id/img_profile"/>
+
+            <TextView
+                android:id="@+id/tv_greeting"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Welcome Back"
+                android:textSize="10sp"
+                android:layout_marginTop="1dp"
+                android:layout_marginStart="11dp"
+                app:layout_constraintStart_toEndOf="@id/img_profile"
+                app:layout_constraintTop_toBottomOf="@id/tv_name"/>
+
+            <ImageView
+                android:id="@+id/img_notification"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/bell"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_total_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Balance"
+                android:textSize="24sp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="21dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_greeting"/>
+
+            <TextView
+                android:id="@+id/tv_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rp.1.000.000"
+                android:textSize="35sp"
+                android:textColor="#1E1E1E"
+                android:layout_marginTop="18dp"
+                android:layout_marginStart="26dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_total_balance"/>
+
+            <ImageView
+                android:id="@+id/plugin"
+                android:layout_width="117dp"
+                android:layout_height="120dp"
+                android:src="@drawable/pluginpig"
+                android:layout_marginEnd="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_balance"
+                app:layout_constraintTop_toTopOf="@id/tv_total_balance"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_InOut"
+                android:layout_width="312dp"
+                android:layout_height="95dp"
+                android:layout_marginTop="23dp"
+                app:cardCornerRadius="30dp"
+                android:backgroundTint="#FFCB15"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_balance">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tv_income"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Income"
+                        android:textSize="18sp"
+                        android:layout_marginTop="21dp"
+                        android:layout_marginStart="50dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/tv_income_money"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginTop="5dp"
+                        android:text="+ Rp 500.000"
+                        android:textSize="18sp"
+                        android:textColor="@color/black"
+                        app:layout_constraintEnd_toEndOf="@id/tv_income"
+                        app:layout_constraintHorizontal_bias="0.694"
+                        app:layout_constraintStart_toStartOf="@id/tv_income"
+                        app:layout_constraintTop_toBottomOf="@id/tv_income" />
+
+                    <TextView
+                        android:id="@+id/tv_spending"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Spendings"
+                        android:textSize="18sp"
+                        android:layout_marginTop="21dp"
+                        android:layout_marginEnd="50dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/tv_spending_money"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="- Rp 300.000"
+                        android:textSize="18sp"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="5dp"
+                        app:layout_constraintEnd_toEndOf="@id/tv_spending"
+                        app:layout_constraintStart_toStartOf="@id/tv_spending"
+                        app:layout_constraintTop_toBottomOf="@id/tv_spending"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tv_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Category"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="17dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cv_info" />
+
+    <LinearLayout
+        android:id="@+id/list_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_category"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:drawableStart="@drawable/ic_add"
+            android:padding="11dp"
+            android:layout_marginEnd="15dp"/>
+
+        <Button
+            android:id="@+id/btn_food"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="11dp"/>
+
+        <Button
+            android:id="@+id/btn_transport"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="11dp"/>
+
+        <Button
+            android:id="@+id/btn_gift"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="11dp"/>
+
+        <Button
+            android:id="@+id/btn_sports"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_transaction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Transaction"
+        android:textSize="20sp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="32dp"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/list_button"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
