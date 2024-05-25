@@ -17,4 +17,17 @@
     <string name="category">Category</string>
     <string name="transaction">Transaction</string>
     <string name="plugin_desc">gambar orang menabung</string>
+
+    <!--  Sign In  -->
+    <string name="signin_title">Sign In</string>
+    <string name="signin_email">Email</string>
+    <string name="signin_email_hint">Enter your email address</string>
+    <string name="signin_password">Password</string>
+    <string name="signin_password_hint">Enter your password</string>
+    <string name="signin_forgot">Forgot your password?</string>
+    <string name="signin_continue">Or continue with</string>
+    <string name="sign_donthaveacc">Don\'t have an account?</string>
+
+    <!--  Sign Up  -->
+    <string name="signup_underline"><u>Sign Up</u></string>
 </resources>
