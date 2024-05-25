@@ -3,4 +3,18 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="rv_lunch">Makan Siang</string>
+    <string name="rv_date">20/04/24</string>
+    <string name="rv_money">Rp. 30.000</string>
+    <string name="name_account">Nama</string>
+    <string name="greetings">Welcome Back</string>
+    <string name="total_balance">Total Balance</string>
+    <string name="main_money">Rp.1.000.000</string>
+    <string name="income">Income</string>
+    <string name="income_money">+ Rp 500.000</string>
+    <string name="spendings">Spendings</string>
+    <string name="spending_money">- Rp 300.000</string>
+    <string name="category">Category</string>
+    <string name="transaction">Transaction</string>
+    <string name="plugin_desc">gambar orang menabung</string>
 </resources>

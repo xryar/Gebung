@@ -15,7 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#015C91"
+        android:background="@color/main_background"
         android:padding="8dp">
 
         <ImageView
@@ -31,7 +31,7 @@
             android:id="@+id/tv_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Makan Siang"
+            android:text="@string/rv_lunch"
             android:textSize="18sp"
             android:textColor="@color/white"
             android:layout_marginTop="1dp"
@@ -43,7 +43,7 @@
             android:id="@+id/tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="20/04/24"
+            android:text="@string/rv_date"
             android:textSize="12sp"
             android:textColor="@color/white"
             android:layout_marginStart="13dp"
@@ -55,9 +55,9 @@
             android:id="@+id/tv_money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rp. 30.000"
+            android:text="@string/rv_money"
             android:textSize="20sp"
-            android:textColor="#FF204E"
+            android:textColor="@color/red"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
