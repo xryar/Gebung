@@ -259,7 +259,6 @@
         tools:listitem="@layout/list_transaction"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="pa"
         app:layout_constraintTop_toBottomOf="@id/tv_transaction"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
