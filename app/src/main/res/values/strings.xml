@@ -18,7 +18,17 @@
     <string name="transaction">Transaction</string>
     <string name="plugin_desc">gambar orang menabung</string>
 
+    <!--  OnBoarding  -->
+    <string name="tour1_title">Welcome To Gebung!</string>
+    <string name="tour1_description">Gebung is a personal finance\n management application crafted\n to empower users in efficiently\n managing their financial\n resources.</string>
+    <string name="tour2_title">Want To Manage Finances Easily?</string>
+    <string name="tour2_description">Try all the features available on\n Gebung and enjoy various\n conveniences in managing your\n finances</string>
+    <string name="welcome_title">Welcome To Gebung</string>
+    <string name="welcome_description">let\'s organize your finances</string>
+    <string name="welcome_button">Start</string>
+
     <!--  Sign In  -->
+    <string name="signin_underline"><u>Sign In</u></string>
     <string name="signin_title">Sign In</string>
     <string name="signin_email">Email</string>
     <string name="signin_email_hint">Enter your email address</string>
@@ -30,4 +40,13 @@
 
     <!--  Sign Up  -->
     <string name="signup_underline"><u>Sign Up</u></string>
+    <string name="signup">Sign Up</string>
+    <string name="signup_name">Full Name</string>
+    <string name="signup_name_hint">Enter yout full name</string>
+    <string name="signup_email">Email</string>
+    <string name="signup_email_hint">Enter your email address</string>
+    <string name="signup_password">Password</string>
+    <string name="signup_password_hint">Enter your password</string>
+    <string name="signup_continuewith">Or continue with</string>
+    <string name="signup_haveaccount">have an account?</string>
 </resources>
