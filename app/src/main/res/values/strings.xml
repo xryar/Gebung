@@ -49,4 +49,9 @@
     <string name="signup_password_hint">Enter your password</string>
     <string name="signup_continuewith">Or continue with</string>
     <string name="signup_haveaccount">have an account?</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="setting">Setting</string>
+    <string name="about">About</string>
+    <string name="logout">Logout</string>
+    <string name="profile_name">Alexa Howard</string>
 </resources>
