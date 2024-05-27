@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Gebung</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_analysis">Analysis</string>
+    <string name="title_profile">Profile</string>
     <string name="rv_lunch">Makan Siang</string>
     <string name="rv_date">20/04/24</string>
     <string name="rv_money">Rp. 30.000</string>
@@ -49,9 +49,32 @@
     <string name="signup_password_hint">Enter your password</string>
     <string name="signup_continuewith">Or continue with</string>
     <string name="signup_haveaccount">have an account?</string>
+
+    <!--  Profile  -->
+    <string name="profile_name">Alexa Howard</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="setting">Setting</string>
     <string name="about">About</string>
     <string name="logout">Logout</string>
-    <string name="profile_name">Alexa Howard</string>
+
+    <!---  Edit Profile  -->
+    <string name="save">Save</string>
+    <string name="price">Price</string>
+    <string name="date">Date</string>
+    <string name="title">Title</string>
+    <string name="dialog_title">+ Add New</string>
+
+    <!--  Edit Profile  -->
+    <string name="fullname">Fullname</string>
+    <string name="input_name">Input Your Name</string>
+    <string name="gender">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="province">Province</string>
+    <string name="input_province">Input Your Province</string>
+    <string name="upload_pict">Unggah Foto Anda</string>
+
+    <!--  About  -->
+    <string name="desc1">Gebung is a personal finance \nmanagement application crafted\nto empower users in efficiently\nmanaging their financial\nresources.</string>
+    <string name="desc2">Equipped with a suite of features, \nthe app allows users to easily record \nexpenses, keep transaction logs, receive \ntimely notifications when they approach \npredetermined spending limits, and \nbenefit from accurate spending \npredictions based on their past \nspending patterns.</string>
 </resources>

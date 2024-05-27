@@ -1,39 +1,44 @@
 package com.example.gebung.ui.notifications
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.example.gebung.databinding.FragmentNotificationsBinding
+import com.example.gebung.ui.about.AboutActivity
+import com.example.gebung.ui.editprofile.EditProfileActivity
 
 class NotificationsFragment : Fragment() {
 
-    private var _binding: FragmentNotificationsBinding? = null
+    private lateinit var binding : FragmentNotificationsBinding
 
     // This property is only valid between onCreateView and
     // onDestroyView.
-    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)
+        binding = FragmentNotificationsBinding.inflate(inflater, container, false)
 
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        actionListener()
 
-
-        return root
+        return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun actionListener() {
+        binding.cvEditProfile.setOnClickListener {
+            val intent = Intent(activity, EditProfileActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.cvAboutProfile.setOnClickListener {
+            val intent = Intent(activity, AboutActivity::class.java)
+            startActivity(intent)
+        }
     }
+
 }
