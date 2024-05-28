@@ -1,5 +1,6 @@
 package com.example.gebung.ui.home
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,28 +8,71 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.gebung.R
+import com.example.gebung.databinding.CustomDialogBinding
 import com.example.gebung.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentHomeBinding
+    private lateinit var dialogBinding: CustomDialogBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-        return root
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        actionListener()
+
+        return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun actionListener() {
+
+        binding.btnAdd.setOnClickListener {
+            showDialog()
+        }
+
+        binding.btnFood.setOnClickListener {
+            showDialog()
+            dialogBinding.edCategory.setText("Food")
+        }
+
+        binding.btnTransport.setOnClickListener {
+            showDialog()
+            dialogBinding.edCategory.setText("Transport")
+        }
+
+        binding.btnGift.setOnClickListener {
+            showDialog()
+            dialogBinding.edCategory.setText("Gift")
+        }
+
+        binding.btnSports.setOnClickListener {
+            showDialog()
+            dialogBinding.edCategory.setText("Sports")
+        }
+
     }
+
+    private fun showDialog() {
+        dialogBinding = CustomDialogBinding.inflate(layoutInflater)
+        val dialog = Dialog(this.requireContext())
+        dialog.setContentView(dialogBinding.root)
+
+        dialogBinding.btnSave.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialogBinding.btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+
+    }
+
+
 }

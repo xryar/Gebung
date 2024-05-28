@@ -77,4 +77,5 @@
     <!--  About  -->
     <string name="desc1">Gebung is a personal finance \nmanagement application crafted\nto empower users in efficiently\nmanaging their financial\nresources.</string>
     <string name="desc2">Equipped with a suite of features, \nthe app allows users to easily record \nexpenses, keep transaction logs, receive \ntimely notifications when they approach \npredetermined spending limits, and \nbenefit from accurate spending \npredictions based on their past \nspending patterns.</string>
+    <string name="cancel">Cancel</string>
 </resources>

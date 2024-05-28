@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="455dp"
+    android:layout_height="wrap_content"
     android:backgroundTint="@color/popup_background"
-    app:cardCornerRadius="40dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,6 +41,9 @@
             android:layout_marginTop="5dp"
             android:inputType="text"
             android:ems="10"
+            android:hint="Enter Your Title"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_title"/>
@@ -65,6 +67,9 @@
             android:layout_marginTop="5dp"
             android:inputType="text"
             android:ems="10"
+            android:hint="Enter Your Category"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_category"/>
@@ -88,6 +93,9 @@
             android:layout_marginTop="5dp"
             android:inputType="date"
             android:ems="10"
+            android:hint="00/00/0000"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_date"/>
@@ -111,6 +119,9 @@
             android:layout_marginTop="5dp"
             android:inputType="numberDecimal"
             android:ems="10"
+            android:hint="Enter Your Price"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_price"/>
@@ -126,6 +137,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ed_price" />
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="245dp"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/button_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_save" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
