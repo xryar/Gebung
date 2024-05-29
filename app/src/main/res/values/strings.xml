@@ -17,13 +17,14 @@
     <string name="category">Category</string>
     <string name="transaction">Transaction</string>
     <string name="plugin_desc">gambar orang menabung</string>
+    <string name="history">View all</string>
 
     <!--  OnBoarding  -->
     <string name="tour1_title">Welcome To Gebung!</string>
     <string name="tour1_description">Gebung is a personal finance\n management application crafted\n to empower users in efficiently\n managing their financial\n resources.</string>
-    <string name="tour2_title">Want To Manage Finances Easily?</string>
+    <string name="tour2_title">Want To Manage Finances\n Easily?</string>
     <string name="tour2_description">Try all the features available on\n Gebung and enjoy various\n conveniences in managing your\n finances</string>
-    <string name="welcome_title">Welcome To Gebung</string>
+    <string name="welcome_title">Welcome To \nGebung</string>
     <string name="welcome_description">let\'s organize your finances</string>
     <string name="welcome_button">Start</string>
 
@@ -78,4 +79,6 @@
     <string name="desc1">Gebung is a personal finance \nmanagement application crafted\nto empower users in efficiently\nmanaging their financial\nresources.</string>
     <string name="desc2">Equipped with a suite of features, \nthe app allows users to easily record \nexpenses, keep transaction logs, receive \ntimely notifications when they approach \npredetermined spending limits, and \nbenefit from accurate spending \npredictions based on their past \nspending patterns.</string>
     <string name="cancel">Cancel</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

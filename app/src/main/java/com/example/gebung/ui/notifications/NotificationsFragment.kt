@@ -11,6 +11,7 @@ import com.example.gebung.databinding.FragmentNotificationsBinding
 import com.example.gebung.databinding.LogoutDialogBinding
 import com.example.gebung.ui.about.AboutActivity
 import com.example.gebung.ui.editprofile.EditProfileActivity
+import com.example.gebung.ui.signin.SignInActivity
 import com.example.gebung.ui.signup.SignUpActivity
 
 class NotificationsFragment : Fragment() {
@@ -55,7 +56,7 @@ class NotificationsFragment : Fragment() {
         dialog.setContentView(dialogBinding.root)
 
         dialogBinding.btnLogout.setOnClickListener {
-            val intent = Intent(context, SignUpActivity::class.java)
+            val intent = Intent(context, SignInActivity::class.java)
             startActivity(intent)
             dialog.dismiss()
             activity?.finish()
