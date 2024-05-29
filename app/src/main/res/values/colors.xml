@@ -9,7 +9,6 @@
     <color name="white">#FFFFFF</color>
     <color name="main_background">#015C91</color>
     <color name="red">#FF204E</color>
-    <color name="splashscreen_background">#2596be</color>
     <color name="transparent_background">#99FFFFFF</color>
     <color name="popup_background">#FAFAFAE5</color>
     <color name="button_text_color">#FAFAFA</color>
@@ -20,4 +19,5 @@
     <color name="tour_textcolor">#1E1E1E</color>
     <color name="profile_textcolor">#585858</color>
     <color name="button_color">#20709E</color>
+    <color name="button_welcome">#404040</color>
 </resources>

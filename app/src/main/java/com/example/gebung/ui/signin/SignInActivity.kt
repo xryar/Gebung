@@ -33,5 +33,15 @@ class SignInActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+
+    }override fun onBackPressed() {
+        super.onBackPressed()
+        // Intent for going back to home screen
+        val intent = Intent(Intent.ACTION_MAIN)
+        intent.addCategory(Intent.CATEGORY_HOME)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
     }
+
+
 }
