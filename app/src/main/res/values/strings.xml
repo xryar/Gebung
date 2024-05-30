@@ -17,7 +17,7 @@
     <string name="category">Category</string>
     <string name="transaction">Transaction</string>
     <string name="plugin_desc">gambar orang menabung</string>
-    <string name="history">View all</string>
+    <string name="history"><u>View all</u></string>
 
     <!--  OnBoarding  -->
     <string name="tour1_title">Welcome To Gebung!</string>
@@ -52,6 +52,7 @@
     <string name="signup_haveaccount">have an account?</string>
 
     <!--  Profile  -->
+    <string name="profile_title">Profile</string>
     <string name="profile_name">Alexa Howard</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="setting">Setting</string>
@@ -81,4 +82,9 @@
     <string name="cancel">Cancel</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--  History   -->
+    <string name="history_title">History</string>
+
+    <!--  Analysis  -->
 </resources>
