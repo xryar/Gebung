@@ -7,23 +7,11 @@
     tools:context=".ui.dashboard.DashboardFragment"
     android:background="@color/main_background">
 
-    <ImageButton
-        android:id="@+id/btn_back"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/button_back_background"
-        android:src="@drawable/ic_back"
-        android:layout_marginTop="32dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
-
     <TextView
         android:id="@+id/tv_analysis_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/history_title"
+        android:text="@string/analysis_title"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
