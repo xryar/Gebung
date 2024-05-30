@@ -42,7 +42,7 @@
             android:layout_marginTop="5dp"
             android:inputType="text"
             android:ems="10"
-            android:hint="Enter Your Title"
+            android:hint="@string/enter_your_title"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -68,7 +68,7 @@
             android:layout_marginTop="5dp"
             android:inputType="text"
             android:ems="10"
-            android:hint="Enter Your Category"
+            android:hint="@string/enter_your_category"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -94,7 +94,7 @@
             android:layout_marginTop="5dp"
             android:inputType="date"
             android:ems="10"
-            android:hint="00/00/0000"
+            android:hint="@string/date_hint"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -120,12 +120,51 @@
             android:layout_marginTop="5dp"
             android:inputType="numberDecimal"
             android:ems="10"
-            android:hint="Enter Your Price"
+            android:hint="@string/enter_your_price"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_price"/>
+
+
+        <TextView
+            android:id="@+id/tv_options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/type"
+            android:textSize="16sp"
+            android:textColor="@color/gray"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ed_price"/>
+
+        <RadioGroup
+            android:id="@+id/rg_options"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_options">
+
+            <RadioButton
+                android:id="@+id/radio_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/income"/>
+
+            <RadioButton
+                android:id="@+id/radio_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="55dp"
+                android:text="@string/expense"/>
+
+        </RadioGroup>
 
         <Button
             android:id="@+id/btn_save"
@@ -137,7 +176,7 @@
             android:backgroundTint="@color/button_color"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ed_price" />
+            app:layout_constraintTop_toBottomOf="@id/rg_options" />
 
         <Button
             android:id="@+id/btn_cancel"
@@ -150,7 +189,8 @@
             android:layout_marginBottom="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_save" />
+            app:layout_constraintTop_toBottomOf="@id/btn_save"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
