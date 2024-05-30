@@ -1,23 +1,19 @@
 package com.example.gebung.ui.home
 
-import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.example.gebung.R
 import com.example.gebung.databinding.CustomDialogBinding
 import com.example.gebung.databinding.FragmentHomeBinding
+import com.example.gebung.ui.customdialog.CustomDialogFragment
 import com.example.gebung.ui.history.HistoryActivity
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var dialogBinding: CustomDialogBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,27 +30,23 @@ class HomeFragment : Fragment() {
     private fun actionListener() {
 
         binding.btnAdd.setOnClickListener {
-            showDialog()
+            showDialog("")
         }
 
         binding.btnFood.setOnClickListener {
-            showDialog()
-            dialogBinding.edCategory.setText("Food")
+            showDialog("Food")
         }
 
         binding.btnTransport.setOnClickListener {
-            showDialog()
-            dialogBinding.edCategory.setText("Transport")
+            showDialog("Transport")
         }
 
         binding.btnGift.setOnClickListener {
-            showDialog()
-            dialogBinding.edCategory.setText("Gift")
+            showDialog("Gift")
         }
 
         binding.btnSports.setOnClickListener {
-            showDialog()
-            dialogBinding.edCategory.setText("Sports")
+            showDialog("Sports")
         }
 
         binding.tvHistory.setOnClickListener {
@@ -64,22 +56,13 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun showDialog() {
-        dialogBinding = CustomDialogBinding.inflate(layoutInflater)
-        val dialog = Dialog(this.requireContext())
-        dialog.setContentView(dialogBinding.root)
+    private fun showDialog(category: String) {
+        val dialog = CustomDialogFragment.newInstance(category)
 
-        dialogBinding.btnSave.setOnClickListener {
-            dialog.dismiss()
-        }
-
-        dialogBinding.btnCancel.setOnClickListener {
-            dialog.dismiss()
-        }
-
-        dialog.show()
+        dialog.show(requireActivity().supportFragmentManager, "CustomDialog")
 
     }
+
 
 
 }
