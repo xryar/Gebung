@@ -1,6 +1,7 @@
 package com.example.gebung.ui.home
 
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.gebung.R
 import com.example.gebung.databinding.CustomDialogBinding
 import com.example.gebung.databinding.FragmentHomeBinding
+import com.example.gebung.ui.history.HistoryActivity
 
 class HomeFragment : Fragment() {
 
@@ -53,6 +55,11 @@ class HomeFragment : Fragment() {
         binding.btnSports.setOnClickListener {
             showDialog()
             dialogBinding.edCategory.setText("Sports")
+        }
+
+        binding.tvHistory.setOnClickListener {
+            val intent = Intent(activity, HistoryActivity::class.java)
+            startActivity(intent)
         }
 
     }

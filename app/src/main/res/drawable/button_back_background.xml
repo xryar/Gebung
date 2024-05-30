@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Lapisan Outline Putih -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#33FFFFFF"/>
+            <corners android:radius="16dp"/>
+        </shape>
+    </item>
+
+    <!-- Lapisan Background -->
+    <item android:left="2dp" android:top="2dp" android:right="2dp" android:bottom="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/main_background"/>
+            <corners android:radius="14dp"/> <!-- Radius lebih kecil untuk menampilkan outline -->
+        </shape>
+    </item>
+</layer-list>
