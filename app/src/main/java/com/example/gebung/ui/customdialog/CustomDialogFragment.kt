@@ -33,6 +33,7 @@ class CustomDialogFragment: DialogFragment() {
         binding.edCategory.setText(category)
 
         binding.btnSave.setOnClickListener {
+            showSuccessDialog()
             dismiss()
         }
 
@@ -43,6 +44,12 @@ class CustomDialogFragment: DialogFragment() {
         builder.setView(binding.root)
 
         return builder.create()
+    }
+
+    private fun showSuccessDialog() {
+        val dialog = SuccessDialogFragment()
+
+        dialog.show(requireActivity().supportFragmentManager, "success_dialog")
     }
 
     companion object{

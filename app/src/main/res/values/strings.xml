@@ -85,6 +85,14 @@
 
     <!--  History   -->
     <string name="history_title">History</string>
+    <string name="added_successfully">Added\nSuccessfully</string>
+    <string name="close">Close</string>
+    <string name="expense">Expense</string>
+    <string name="enter_your_price">Enter Your Price</string>
+    <string name="enter_your_category">Enter Your Category</string>
+    <string name="type">Type</string>
+    <string name="date_hint">00/00/0000</string>
+    <string name="enter_your_title">Enter Your Title</string>
 
     <!--  Analysis  -->
 </resources>
