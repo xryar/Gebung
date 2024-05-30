@@ -95,4 +95,6 @@
     <string name="enter_your_title">Enter Your Title</string>
 
     <!--  Analysis  -->
+    <string name="analysis_title">Analysis</string>
+    <string name="about_gebung">About Gebung</string>
 </resources>
