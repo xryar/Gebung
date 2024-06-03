@@ -14,7 +14,7 @@
     <string name="income_money">+ Rp 500.000</string>
     <string name="spendings">Spendings</string>
     <string name="spending_money">- Rp 300.000</string>
-    <string name="category">Category</string>
+    <string name="category">Spendings Category</string>
     <string name="transaction">Transaction</string>
     <string name="plugin_desc">gambar orang menabung</string>
     <string name="history"><u>View all</u></string>
