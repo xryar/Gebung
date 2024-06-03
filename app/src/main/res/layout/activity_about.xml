@@ -63,6 +63,7 @@
         android:text="@string/desc1"
         android:textColor="@color/white"
         android:textSize="16sp"
+        android:justificationMode="inter_word"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginTop="24dp"
