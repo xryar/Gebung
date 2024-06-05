@@ -6,15 +6,15 @@
     <string name="rv_lunch">Makan Siang</string>
     <string name="rv_date">20/04/24</string>
     <string name="rv_money">Rp. 30.000</string>
-    <string name="name_account">Nama</string>
+    <string name="name_account">Hi, Alexa Howard</string>
     <string name="greetings">Welcome Back</string>
-    <string name="total_balance">Total Balance</string>
+    <string name="spending_limit">Spending Limit</string>
     <string name="main_money">Rp.1.000.000</string>
     <string name="income">Income</string>
     <string name="income_money">+ Rp 500.000</string>
     <string name="spendings">Spendings</string>
     <string name="spending_money">- Rp 300.000</string>
-    <string name="category">Spendings Category</string>
+    <string name="category">Category</string>
     <string name="transaction">Transaction</string>
     <string name="plugin_desc">gambar orang menabung</string>
     <string name="history"><u>View all</u></string>
@@ -97,4 +97,15 @@
     <!--  Analysis  -->
     <string name="analysis_title">Analysis</string>
     <string name="about_gebung">About Gebung</string>
+    <string name="total_limit">Total Limit</string>
+    <string name="reminder">Don\'t forget to record your\n expences!</string>
+    <string name="set_limit">Set Limit</string>
+    <string name="foto_profile">Foto Profile</string>
+    <string name="daily_input">Daily Input</string>
+    <string name="inside_circle">3 of 7</string>
+    <string name="other">Other</string>
+    <string name="health">Health</string>
+    <string name="transport">Transport</string>
+    <string name="food">Food</string>
+    <string name="shop">Shop</string>
 </resources>

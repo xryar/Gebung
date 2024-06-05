@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.gebung.R
 import com.example.gebung.databinding.CustomDialogBinding
 import com.example.gebung.databinding.FragmentHomeBinding
 import com.example.gebung.ui.customdialog.CustomDialogFragment
@@ -29,24 +30,24 @@ class HomeFragment : Fragment() {
 
     private fun actionListener() {
 
-        binding.btnAdd.setOnClickListener {
-            showDialog("")
+        binding.btnShop.setOnClickListener {
+            showDialog(getString(R.string.shop))
         }
 
         binding.btnFood.setOnClickListener {
-            showDialog("Food")
+            showDialog(getString(R.string.food))
         }
 
         binding.btnTransport.setOnClickListener {
-            showDialog("Transport")
+            showDialog(getString(R.string.transport))
         }
 
-        binding.btnGift.setOnClickListener {
-            showDialog("Gift")
+        binding.btnHealth.setOnClickListener {
+            showDialog(getString(R.string.health))
         }
 
-        binding.btnSports.setOnClickListener {
-            showDialog("Sports")
+        binding.btnOther.setOnClickListener {
+            showDialog(getString(R.string.other))
         }
 
         binding.tvHistory.setOnClickListener {
