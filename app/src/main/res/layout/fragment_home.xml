@@ -24,161 +24,222 @@
 
             <ImageView
                 android:id="@+id/img_profile"
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                android:layout_width="53dp"
+                android:layout_height="53dp"
+                android:layout_marginEnd="14dp"
+                android:layout_marginTop="20dp"
+                android:contentDescription="@string/foto_profile"
+                tools:src="@tools:sample/avatars"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
             <TextView
-                android:id="@+id/tv_name"
+                android:id="@+id/tv_greetings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/name_account"
-                android:textSize="11sp"
-                android:layout_marginStart="11dp"
-                android:layout_marginTop="5dp"
-                app:layout_constraintStart_toEndOf="@id/img_profile"
-                app:layout_constraintTop_toTopOf="@id/img_profile"/>
-
-            <TextView
-                android:id="@+id/tv_greeting"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/greetings"
-                android:textSize="11sp"
-                android:layout_marginTop="1dp"
-                android:layout_marginStart="11dp"
-                app:layout_constraintStart_toEndOf="@id/img_profile"
-                app:layout_constraintTop_toBottomOf="@id/tv_name"/>
-
-            <ImageView
-                android:id="@+id/img_notification"
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginTop="8dp"
-                android:src="@drawable/bell"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:textSize="24sp"
+                android:textColor="@color/black"
+                android:layout_marginStart="21dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
-                android:id="@+id/tv_total_balance"
+                android:id="@+id/tv_reminder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/total_balance"
-                android:textSize="24sp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="21dp"
+                android:text="@string/reminder"
+                android:textSize="14sp"
+                android:textColor="@color/gray"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="4dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_greeting"/>
-
-            <TextView
-                android:id="@+id/tv_balance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/main_money"
-                android:textSize="35sp"
-                android:textColor="#1E1E1E"
-                android:layout_marginTop="18dp"
-                android:layout_marginStart="26dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_total_balance"/>
-
-            <ImageView
-                android:id="@+id/plugin"
-                android:layout_width="117dp"
-                android:layout_height="120dp"
-                android:contentDescription="@string/plugin_desc"
-                android:src="@drawable/pluginpig"
-                android:layout_marginEnd="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/tv_balance"
-                app:layout_constraintTop_toTopOf="@id/tv_total_balance"/>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cv_InOut"
-                android:layout_width="312dp"
-                android:layout_height="95dp"
-                android:layout_marginTop="23dp"
-                app:cardCornerRadius="30dp"
-                android:backgroundTint="#FFCB15"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_balance">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/tv_income"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/income"
-                        android:textSize="18sp"
-                        android:layout_marginTop="21dp"
-                        android:layout_marginStart="50dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
-
-                    <TextView
-                        android:id="@+id/tv_income_money"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="40dp"
-                        android:layout_marginTop="5dp"
-                        android:text="@string/income_money"
-                        android:textSize="18sp"
-                        android:textColor="@color/black"
-                        app:layout_constraintEnd_toEndOf="@id/tv_income"
-                        app:layout_constraintHorizontal_bias="0.694"
-                        app:layout_constraintStart_toStartOf="@id/tv_income"
-                        app:layout_constraintTop_toBottomOf="@id/tv_income" />
-
-                    <TextView
-                        android:id="@+id/tv_spending"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/spendings"
-                        android:textSize="18sp"
-                        android:layout_marginTop="21dp"
-                        android:layout_marginEnd="50dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
-
-                    <TextView
-                        android:id="@+id/tv_spending_money"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/spending_money"
-                        android:textSize="18sp"
-                        android:textColor="@color/black"
-                        android:layout_marginTop="5dp"
-                        app:layout_constraintEnd_toEndOf="@id/tv_spending"
-                        app:layout_constraintStart_toStartOf="@id/tv_spending"
-                        app:layout_constraintTop_toBottomOf="@id/tv_spending"/>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.cardview.widget.CardView>
+                app:layout_constraintTop_toBottomOf="@id/tv_greetings"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
         
     </androidx.cardview.widget.CardView>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_limit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/cv_daily_input"
+        app:layout_constraintTop_toBottomOf="@id/cv_info">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:id="@+id/tv_spending_limit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/spending_limit"
+                android:textSize="17sp"
+                android:textColor="@color/gray"
+                android:layout_marginStart="22dp"
+                android:layout_marginEnd="22dp"
+                android:layout_marginTop="9dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/main_money"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:layout_marginStart="22dp"
+                android:layout_marginEnd="22dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_spending_limit"/>
+            
+            <Button
+                android:id="@+id/btn_limit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/set_limit"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="@color/button_color"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_money"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_daily_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toEndOf="@id/cv_limit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cv_info">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="24dp">
+
+            <TextView
+                android:id="@+id/tv_daily_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/daily_input"
+                android:textSize="17sp"
+                android:textColor="@color/gray"
+                android:layout_marginStart="37dp"
+                android:layout_marginEnd="37dp"
+                android:layout_marginTop="7dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <ProgressBar
+                android:id="@+id/circularProgressBar"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_marginTop="13dp"
+                android:indeterminate="false"
+                android:max="7"
+                android:progress="3"
+                android:progressDrawable="@drawable/circular_progress_bar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_daily_input" />
+
+            <TextView
+                android:id="@+id/progressText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/inside_circle"
+                android:textSize="12sp"
+                android:textColor="@android:color/black"
+                app:layout_constraintTop_toTopOf="@id/circularProgressBar"
+                app:layout_constraintBottom_toBottomOf="@id/circularProgressBar"
+                app:layout_constraintStart_toStartOf="@id/circularProgressBar"
+                app:layout_constraintEnd_toEndOf="@id/circularProgressBar" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_limit_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="9dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cv_limit">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="19dp">
+
+            <TextView
+                android:id="@+id/tv_limit_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/total_limit"
+                android:textSize="18sp"
+                android:textColor="@color/gray"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <ProgressBar
+                android:id="@+id/horizontalProgressBar"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:indeterminate="false"
+                android:max="100"
+                android:progress="70"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="8dp"
+                android:progressDrawable="@drawable/horizontal_progress_bar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_limit_info"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
     <TextView
         android:id="@+id/tv_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/category"
+        android:text="@string/transaction"
         android:textSize="20sp"
         android:textColor="#FFFFFF"
         android:layout_marginStart="13dp"
         android:layout_marginTop="17dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cv_info" />
+        app:layout_constraintTop_toBottomOf="@id/cv_limit_info" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/list_button"
@@ -190,16 +251,27 @@
         app:layout_constraintTop_toBottomOf="@id/tv_category">
 
         <ImageButton
-            android:id="@+id/btn_add"
+            android:id="@+id/btn_shop"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="25dp"
-            android:src="@drawable/ic_add"
+            android:src="@drawable/shopping"
             android:background="@drawable/home_button_background"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_shopping"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/shop"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="@id/btn_shop"
+            app:layout_constraintEnd_toEndOf="@id/btn_shop"
+            app:layout_constraintTop_toBottomOf="@id/btn_shop"/>
 
         <ImageButton
             android:id="@+id/btn_food"
@@ -208,10 +280,21 @@
             android:layout_marginStart="25dp"
             android:src="@drawable/ic_food"
             android:background="@drawable/home_button_background"
-            app:layout_constraintStart_toEndOf="@id/btn_add"
+            app:layout_constraintStart_toEndOf="@id/btn_shop"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_food"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/food"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="@id/btn_food"
+            app:layout_constraintEnd_toEndOf="@id/btn_food"
+            app:layout_constraintTop_toBottomOf="@id/btn_food"/>
 
         <ImageButton
             android:id="@+id/btn_transport"
@@ -225,29 +308,62 @@
             app:layout_constraintBottom_toBottomOf="parent"
             tools:ignore="ContentDescription" />
 
+        <TextView
+            android:id="@+id/tv_transport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/transport"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="@id/btn_transport"
+            app:layout_constraintEnd_toEndOf="@id/btn_transport"
+            app:layout_constraintTop_toBottomOf="@id/btn_transport"/>
+
         <ImageButton
-            android:id="@+id/btn_gift"
+            android:id="@+id/btn_health"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="25dp"
-            android:src="@drawable/ic_gift"
+            android:src="@drawable/health"
             android:background="@drawable/home_button_background"
             app:layout_constraintStart_toEndOf="@id/btn_transport"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:ignore="ContentDescription" />
 
+        <TextView
+            android:id="@+id/tv_health"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/health"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="@id/btn_health"
+            app:layout_constraintEnd_toEndOf="@id/btn_health"
+            app:layout_constraintTop_toBottomOf="@id/btn_health"/>
+
         <ImageButton
-            android:id="@+id/btn_sports"
+            android:id="@+id/btn_other"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="25dp"
-            android:src="@drawable/ic_sport"
+            android:src="@drawable/ic_add"
             android:background="@drawable/home_button_background"
-            app:layout_constraintStart_toEndOf="@id/btn_gift"
+            app:layout_constraintStart_toEndOf="@id/btn_health"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_other"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/other"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="@id/btn_other"
+            app:layout_constraintEnd_toEndOf="@id/btn_other"
+            app:layout_constraintTop_toBottomOf="@id/btn_other"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -255,7 +371,7 @@
         android:id="@+id/tv_transaction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/transaction"
+        android:text="@string/history_title"
         android:textSize="20sp"
         android:layout_marginStart="13dp"
         android:layout_marginTop="32dp"
