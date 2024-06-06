@@ -62,4 +62,6 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.common)
     ksp(libs.room.compiler)
+
+    implementation (libs.mpandroidchart)
 }
