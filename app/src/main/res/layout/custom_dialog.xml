@@ -151,13 +151,13 @@
             app:layout_constraintTop_toBottomOf="@id/tv_options">
 
             <RadioButton
-                android:id="@+id/radio_male"
+                android:id="@+id/radio_income"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/income"/>
 
             <RadioButton
-                android:id="@+id/radio_female"
+                android:id="@+id/radio_expense"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="55dp"
