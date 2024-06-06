@@ -11,7 +11,6 @@ import java.util.concurrent.Executors
 class TransactionRepository(application: Application) {
 
     private val mTransactionDao: TransactionDao
-    private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
 
     init {
         val db = TransactionRoomDatabase.getDatabase(application)

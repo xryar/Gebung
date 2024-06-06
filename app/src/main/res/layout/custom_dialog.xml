@@ -117,7 +117,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:inputType="numberDecimal"
+            android:inputType="number"
             android:ems="10"
             android:hint="@string/enter_your_price"
             android:layout_marginStart="16dp"
