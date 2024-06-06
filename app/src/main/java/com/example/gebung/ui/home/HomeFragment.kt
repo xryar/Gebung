@@ -6,15 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.gebung.R
+import com.example.gebung.database.Transaction
 import com.example.gebung.databinding.CustomDialogBinding
 import com.example.gebung.databinding.FragmentHomeBinding
 import com.example.gebung.ui.customdialog.CustomDialogFragment
 import com.example.gebung.ui.history.HistoryActivity
+import com.example.gebung.viewmodel.TransactionViewModel
+import com.example.gebung.viewmodel.ViewModelFactory
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
+    private lateinit var viewModel: TransactionViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -63,7 +68,4 @@ class HomeFragment : Fragment() {
         dialog.show(requireActivity().supportFragmentManager, "CustomDialog")
 
     }
-
-
-
 }

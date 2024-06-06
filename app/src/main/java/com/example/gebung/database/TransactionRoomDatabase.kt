@@ -6,25 +6,26 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(entities = [Transaction::class], version = 1, exportSchema = false)
-abstract class TransactionRoomDatabase: RoomDatabase() {
+abstract class TransactionRoomDatabase : RoomDatabase() {
 
     abstract fun transactionDao(): TransactionDao
 
-    companion object{
+    companion object {
         @Volatile
-        private var INSTANCE: TransactionRoomDatabase ?= null
+        private var INSTANCE: TransactionRoomDatabase? = null
 
         @JvmStatic
-        fun getDatabase(context: Context): TransactionRoomDatabase{
-            if (INSTANCE == null){
-                synchronized(TransactionRoomDatabase::class.java){
+        fun getDatabase(context: Context): TransactionRoomDatabase {
+            if (INSTANCE == null) {
+                synchronized(TransactionRoomDatabase::class.java) {
                     INSTANCE = Room.databaseBuilder(
                         context.applicationContext,
-                        TransactionRoomDatabase::class.java, "transcation_database")
+                        TransactionRoomDatabase::class.java, "food_database")
                         .build()
                 }
             }
             return INSTANCE as TransactionRoomDatabase
         }
     }
+
 }
