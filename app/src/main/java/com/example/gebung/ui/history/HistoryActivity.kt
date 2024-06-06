@@ -5,12 +5,18 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gebung.R
 import com.example.gebung.databinding.ActivityHistoryBinding
+import com.example.gebung.viewmodel.TransactionViewModel
+import com.example.gebung.viewmodel.ViewModelFactory
 
 class HistoryActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHistoryBinding
+    private lateinit var adapter: HistoryAdapter
+    private lateinit var viewModel: TransactionViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -22,9 +28,28 @@ class HistoryActivity : AppCompatActivity() {
             insets
         }
 
+        adapter = HistoryAdapter()
+        val factory = ViewModelFactory(application)
+        viewModel = ViewModelProvider(this, factory).get(TransactionViewModel::class.java)
+
+        showRecyclerView()
+        showViewModel()
+
         binding.btnBack.setOnClickListener {
             @Suppress("DEPRECATION")
             onBackPressed()
         }
+    }
+
+    private fun showViewModel() {
+        viewModel.getAllTransaction().observe(this){
+            adapter.getData(it)
+        }
+    }
+
+    private fun showRecyclerView() {
+        binding.rvHistory.layoutManager = LinearLayoutManager(this)
+        binding.rvHistory.setHasFixedSize(true)
+        binding.rvHistory.adapter = adapter
     }
 }
