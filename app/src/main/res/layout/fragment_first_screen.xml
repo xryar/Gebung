@@ -25,6 +25,7 @@
         app:layout_constraintTop_toBottomOf="@id/iv_joyfulman"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:backgroundTint="@color/tour_background"
         app:cardCornerRadius="50dp">
 
@@ -72,7 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tour1_description"
-                android:textSize="18sp"
+                android:textSize="25sp"
                 android:textColor="@color/tour_textcolor"
                 android:textAlignment="center"
                 android:lineSpacingExtra="4dp"
@@ -90,6 +91,7 @@
                 android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_description_firstscreen"
+                app:layout_constraintBottom_toBottomOf="parent"
                 tools:ignore="ContentDescription" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
