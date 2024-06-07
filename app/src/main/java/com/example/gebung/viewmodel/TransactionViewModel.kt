@@ -17,4 +17,6 @@ class TransactionViewModel(application: Application): ViewModel() {
     }
 
     fun getLastTransaction(): LiveData<List<Transaction>> = mTransactionRepository.getLastTransaction()
+
+    fun getAllTransaction(): LiveData<List<Transaction>> = mTransactionRepository.getAllTransaction()
 }

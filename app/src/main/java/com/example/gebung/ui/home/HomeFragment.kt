@@ -7,9 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gebung.R
-import com.example.gebung.database.Transaction
-import com.example.gebung.databinding.CustomDialogBinding
 import com.example.gebung.databinding.FragmentHomeBinding
 import com.example.gebung.ui.customdialog.CustomDialogFragment
 import com.example.gebung.ui.history.HistoryActivity
@@ -20,6 +19,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var viewModel: TransactionViewModel
+    private lateinit var adapter: HomeAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,9 +28,29 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
+        val factory = ViewModelFactory(requireActivity().application)
+        // Gunakan ViewModelFactory saat membuat instance dari TransactionViewModel
+        viewModel = ViewModelProvider(this, factory).get(TransactionViewModel::class.java)
+        adapter = HomeAdapter()
+        showRecyclerView()
+        showViewModel()
         actionListener()
 
         return binding.root
+    }
+
+    private fun showViewModel() {
+        viewModel.getLastTransaction().observe(viewLifecycleOwner){
+            adapter.getData(it)
+        }
+    }
+
+    private fun showRecyclerView() {
+        binding.apply {
+            rvListTransaction.layoutManager = LinearLayoutManager(activity)
+            rvListTransaction.setHasFixedSize(true)
+            rvListTransaction.adapter = adapter
+        }
     }
 
     private fun actionListener() {

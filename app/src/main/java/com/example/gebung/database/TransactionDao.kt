@@ -12,6 +12,9 @@ interface TransactionDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(transaction: Transaction)
 
-    @Query("SELECT * FROM transaction_table ORDER BY id DESC")
+    @Query("SELECT * FROM transaction_table ORDER BY id DESC LIMIT 4")
     fun getLastTransaction(): LiveData<List<Transaction>>
+
+    @Query("SELECT * FROM transaction_table ORDER BY id DESC")
+    fun getAllTransaction(): LiveData<List<Transaction>>
 }

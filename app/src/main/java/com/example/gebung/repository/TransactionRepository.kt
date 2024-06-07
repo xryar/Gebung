@@ -22,4 +22,6 @@ class TransactionRepository(application: Application) {
     }
 
     fun getLastTransaction(): LiveData<List<Transaction>> = mTransactionDao.getLastTransaction()
+
+    fun getAllTransaction(): LiveData<List<Transaction>> = mTransactionDao.getAllTransaction()
 }
