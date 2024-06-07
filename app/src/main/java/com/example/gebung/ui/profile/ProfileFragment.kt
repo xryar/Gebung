@@ -1,24 +1,19 @@
-package com.example.gebung.ui.notifications
+package com.example.gebung.ui.profile
 
-import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.gebung.databinding.FragmentNotificationsBinding
-import com.example.gebung.databinding.LogoutDialogBinding
+import com.example.gebung.databinding.FragmentProfileBinding
 import com.example.gebung.ui.about.AboutActivity
-import com.example.gebung.ui.customdialog.CustomDialogFragment
 import com.example.gebung.ui.customdialog.LogoutDialogFragment
 import com.example.gebung.ui.editprofile.EditProfileActivity
-import com.example.gebung.ui.signin.SignInActivity
-import com.example.gebung.ui.signup.SignUpActivity
 
 class NotificationsFragment : Fragment() {
 
-    private lateinit var binding : FragmentNotificationsBinding
+    private lateinit var binding : FragmentProfileBinding
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -28,7 +23,7 @@ class NotificationsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+        binding = FragmentProfileBinding.inflate(inflater, container, false)
 
         actionListener()
 
