@@ -1,11 +1,15 @@
 package com.example.gebung.ui.home
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.NotificationCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -45,18 +49,51 @@ class HomeFragment : Fragment(), LimitDialogFragment.LimitSetListener {
         return binding.root
     }
 
+
     private fun updateProgressBar() {
         val totalExpense = viewModel.totalExpense.value ?: 0
         if (savedLimit > 0){
             binding.horizontalProgressBar.max = savedLimit
             binding.horizontalProgressBar.progress = totalExpense
+
+            val percentage = (totalExpense.toFloat() / savedLimit * 100).toInt()
+            binding.tvPercentageInfo.text = "$percentage%"
+
+            if (totalExpense > savedLimit && !loadNotificationStatus()){
+                showLimitNotification()
+                saveNotificationStatus(true)
+            }
+        }else{
+            binding.tvPercentageInfo.text = "0%"
         }
+    }
+
+    private fun showLimitNotification() {
+        val notificationManager = requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val channelId = "expense_channel"
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            val channel = NotificationChannel(channelId, "Expense Notifications", NotificationManager.IMPORTANCE_DEFAULT).apply {
+                description = "Notifications for expense limit"
+            }
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        val notification = NotificationCompat.Builder(requireContext(), channelId)
+            .setSmallIcon(R.drawable.ic_notifications_black_24dp)
+            .setContentTitle("Limit Exceeded")
+            .setContentText("Oi oi oi")
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .build()
+
+        notificationManager.notify(1, notification)
     }
 
     override fun onLimitSet(limit: Int){
         binding.tvMoney.text = limit.toString()
         saveLimit(limit)
         updateProgressBar()
+        saveNotificationStatus(false) //Reset
     }
 
     private fun saveLimit(limit: Int){
@@ -78,6 +115,18 @@ class HomeFragment : Fragment(), LimitDialogFragment.LimitSetListener {
         }
     }
 
+    private fun saveNotificationStatus(status: Boolean){
+        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
+        with(sharedPref.edit()){
+            putBoolean("notification_sent", status)
+            apply()
+        }
+    }
+
+    private fun loadNotificationStatus(): Boolean{
+        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
+        return sharedPref?.getBoolean("notification_sent", false) ?: false
+    }
     private fun observeTotalExpense() {
         viewModel.totalExpense.observe(viewLifecycleOwner){totalExpense->
             binding.tvTotalExpense.text = totalExpense?.toString() ?: "0"
