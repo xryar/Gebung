@@ -23,4 +23,5 @@ interface TransactionDao {
 
     @Query("SELECT SUM(nominal) FROM transaction_table WHERE type = :transactionType")
     fun getTotalNominal(transactionType: String): LiveData<Int>
+
 }
