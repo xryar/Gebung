@@ -15,9 +15,6 @@ class ProfileFragment : Fragment() {
 
     private lateinit var binding : FragmentProfileBinding
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

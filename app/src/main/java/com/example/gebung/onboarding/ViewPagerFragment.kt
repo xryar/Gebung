@@ -1,10 +1,10 @@
 package com.example.gebung.onboarding
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.gebung.databinding.FragmentViewPagerBinding
 import com.example.gebung.onboarding.screens.FirstScreen
 import com.example.gebung.onboarding.screens.SecondScreen
