@@ -9,17 +9,24 @@
         android:id="@+id/navigation_home"
         android:name="com.example.gebung.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_analysis"
+            app:destination="@id/navigation_analysis" />
+    </fragment>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.gebung.ui.analysis.DashboardFragment"
+        android:id="@+id/navigation_analysis"
+        android:name="com.example.gebung.ui.analysis.AnalysisFragment"
         android:label="@string/title_analysis"
         tools:layout="@layout/fragment_analysis" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.gebung.ui.profile.NotificationsFragment"
+        android:id="@+id/navigation_profile"
+        android:name="com.example.gebung.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>

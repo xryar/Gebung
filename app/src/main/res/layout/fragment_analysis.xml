@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.analysis.DashboardFragment"
+    tools:context=".ui.analysis.AnalysisFragment"
     android:background="@color/main_background">
 
     <TextView
@@ -47,7 +47,7 @@
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/PredictChart"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="350dp"
         android:background="@color/white"
         android:layout_marginTop="19dp"
         app:layout_constraintStart_toStartOf="parent"

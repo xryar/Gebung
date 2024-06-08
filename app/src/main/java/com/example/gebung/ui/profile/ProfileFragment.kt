@@ -11,7 +11,7 @@ import com.example.gebung.ui.about.AboutActivity
 import com.example.gebung.ui.customdialog.LogoutDialogFragment
 import com.example.gebung.ui.editprofile.EditProfileActivity
 
-class NotificationsFragment : Fragment() {
+class ProfileFragment : Fragment() {
 
     private lateinit var binding : FragmentProfileBinding
 
