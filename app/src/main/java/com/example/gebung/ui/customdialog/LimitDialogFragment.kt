@@ -1,5 +1,7 @@
 package com.example.gebung.ui.customdialog
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,9 +19,10 @@ class LimitDialogFragment : DialogFragment() {
         fun onLimitSet(limit: Int)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        binding = FragmentLimitDialogBinding.inflate(inflater, container, false)
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val builder = AlertDialog.Builder(requireActivity())
+        val inflater = requireActivity().layoutInflater
+        binding = FragmentLimitDialogBinding.inflate(inflater, null, false)
 
         binding.btnSave.setOnClickListener {
             val limit = binding.edLimit.text.toString().toIntOrNull()
@@ -35,7 +38,10 @@ class LimitDialogFragment : DialogFragment() {
             dismiss()
         }
 
-        return binding.root
+        builder.setView(binding.root)
+
+        return builder.create()
+
     }
 
     fun setLimitListener(listener: LimitSetListener){

@@ -16,16 +16,6 @@ class LogoutDialogFragment: DialogFragment() {
 
     private lateinit var binding: LogoutDialogBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = LogoutDialogBinding.inflate(inflater, container, false)
-
-        return binding.root
-    }
-
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(requireActivity())
         val inflater = requireActivity().layoutInflater
