@@ -14,16 +14,6 @@ class SuccessDialogFragment: DialogFragment() {
 
     private lateinit var binding: SuccessDialogBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = SuccessDialogBinding.inflate(inflater, container, false)
-
-        return binding.root
-    }
-
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(requireActivity())
         val inflater = requireActivity().layoutInflater

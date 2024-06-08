@@ -19,16 +19,6 @@ class CustomDialogFragment: DialogFragment() {
     private lateinit var binding: CustomDialogBinding
     private lateinit var viewModel: TransactionViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = CustomDialogBinding.inflate(inflater, container, false)
-
-        return binding.root
-    }
-
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(requireActivity())
         val inflater = requireActivity().layoutInflater
