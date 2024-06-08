@@ -6,15 +6,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import com.example.gebung.database.Transaction
+import com.example.gebung.database.TransactionRoomDatabase
 import com.example.gebung.databinding.FragmentAnalysisBinding
-import com.github.mikephil.charting.components.Legend
+import com.example.gebung.viewmodel.TransactionViewModel
+import com.example.gebung.viewmodel.ViewModelFactory
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import kotlinx.coroutines.launch
 
-class DashboardFragment : Fragment() {
+class AnalysisFragment : Fragment() {
 
     private lateinit var binding: FragmentAnalysisBinding
+    private lateinit var viewModel: AnalysisViewModel
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -27,22 +37,24 @@ class DashboardFragment : Fragment() {
 
         binding = FragmentAnalysisBinding.inflate(inflater, container, false)
 
-        //Data Dummy Tod
-        val incomeEntries = listOf(
-            Entry(0f, 0f), Entry(1f, 1000f), Entry(2f, 2000f), Entry(3f, 1500f),
-            Entry(4f, 3000f), Entry(5f, 2500f), Entry(6f, 4000f), Entry(7f, 1000f),
-            Entry(8f, 1500f), Entry(9f, 2000f), Entry(10f, 3500f), Entry(11f, 3000f)
-        )
+        val factory = ViewModelFactory(requireActivity().application)
 
-        val spendingEntries = listOf(
-            Entry(0f, 0f), Entry(1f, 500f), Entry(2f, 3000f), Entry(3f, 1000f),
-            Entry(4f, 2500f), Entry(5f, 3500f), Entry(6f, 2000f), Entry(7f, 1500f),
-            Entry(8f, 1000f), Entry(9f, 500f), Entry(10f, 2500f), Entry(11f, 1500f)
-        )
+        viewModel = ViewModelProvider(this, factory)[AnalysisViewModel::class.java]
+        viewModel.allData.observe(viewLifecycleOwner) { dataList ->
+            dataList?.let {
+                displayChart(it)
+            }
+        }
 
-        val incomeDataSet = LineDataSet(incomeEntries, "Income").apply {
-            color = Color.BLUE
-            valueTextColor = Color.BLACK
+        return binding.root
+    }
+
+
+    private fun displayChart(dataList: List<Transaction>) {
+        val spendingEntries = mutableListOf<Entry>()
+
+        dataList.forEachIndexed { index, data ->
+            spendingEntries.add(Entry(index.toFloat(), data.nominal.toFloat()))
         }
 
         val spendingDataSet = LineDataSet(spendingEntries, "Spending").apply {
@@ -50,12 +62,8 @@ class DashboardFragment : Fragment() {
             valueTextColor = Color.BLACK
         }
 
-        binding.PredictChart.data = LineData(incomeDataSet, spendingDataSet)
+        binding.PredictChart.data = LineData(spendingDataSet)
         binding.PredictChart.invalidate()
 
-        val legend = binding.PredictChart.legend
-        legend.form = Legend.LegendForm.LINE
-
-        return binding.root
     }
 }
