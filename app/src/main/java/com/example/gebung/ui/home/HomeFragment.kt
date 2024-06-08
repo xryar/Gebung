@@ -35,8 +35,15 @@ class HomeFragment : Fragment() {
         showRecyclerView()
         showViewModel()
         actionListener()
+        observeTotalExpense()
 
         return binding.root
+    }
+
+    private fun observeTotalExpense() {
+        viewModel.totalExpense.observe(viewLifecycleOwner){totalExpense->
+            binding.tvTotalExpense.text = totalExpense?.toString() ?: "0"
+        }
     }
 
     private fun showViewModel() {
