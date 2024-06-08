@@ -5,9 +5,6 @@ import androidx.lifecycle.LiveData
 import com.example.gebung.database.Transaction
 import com.example.gebung.database.TransactionDao
 import com.example.gebung.database.TransactionRoomDatabase
-import java.util.Calendar
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
 
 class TransactionRepository(application: Application) {
 
