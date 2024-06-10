@@ -22,10 +22,12 @@
             android:id="@+id/img_info"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:background="@drawable/circle_background"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:src="@tools:sample/avatars"/>
+            tools:src="@tools:sample/avatars"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/tv_info"
@@ -59,7 +61,6 @@
             android:textSize="20sp"
             android:textColor="@color/red"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

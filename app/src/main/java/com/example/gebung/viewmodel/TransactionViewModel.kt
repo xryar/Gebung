@@ -22,5 +22,4 @@ class TransactionViewModel(application: Application): ViewModel() {
 
     fun getAllTransaction(): LiveData<List<Transaction>> = mTransactionRepository.getAllTransaction()
 
-
 }

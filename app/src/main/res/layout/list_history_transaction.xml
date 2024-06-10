@@ -18,12 +18,14 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:background="@drawable/circle_background"
+            android:scaleType="centerCrop"
             android:layout_marginStart="10dp"
             android:layout_marginTop="22dp"
             android:layout_marginBottom="22dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars"
             tools:ignore="ContentDescription">
 
         </ImageView>
@@ -60,8 +62,8 @@
             android:textSize="20sp"
             android:textColor="@color/red"
             android:layout_marginEnd="10dp"
+            android:layout_marginBottom="18dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

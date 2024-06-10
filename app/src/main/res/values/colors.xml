@@ -21,4 +21,7 @@
     <color name="button_color">#20709E</color>
     <color name="button_welcome">#404040</color>
     <color name="button_home">#002548</color>
+
+    <color name="colorIncome">#65B5FF</color>
+    <color name="colorExpense">#FF204E</color>
 </resources>
