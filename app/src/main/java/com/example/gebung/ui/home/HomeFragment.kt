@@ -1,5 +1,6 @@
 package com.example.gebung.ui.home
 
+import android.Manifest
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
@@ -9,6 +10,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.NotificationCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -20,14 +23,27 @@ import com.example.gebung.ui.customdialog.LimitDialogFragment
 import com.example.gebung.ui.history.HistoryActivity
 import com.example.gebung.viewmodel.TransactionViewModel
 import com.example.gebung.viewmodel.ViewModelFactory
+import java.text.NumberFormat
+import java.util.Locale
 
 class HomeFragment : Fragment(), LimitDialogFragment.LimitSetListener {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var viewModel: TransactionViewModel
     private lateinit var adapter: HomeAdapter
+    private val requestPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted: Boolean ->
+            if (isGranted) {
+                Toast.makeText(requireContext(), "Notifications permission granted", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "Notifications permission rejected", Toast.LENGTH_SHORT).show()
+            }
+        }
 
     private var savedLimit: Int = 0
+    var mCurrencyFormat = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,8 +61,28 @@ class HomeFragment : Fragment(), LimitDialogFragment.LimitSetListener {
         actionListener()
         observeTotalExpense()
         loadSavedLimit()
-
+        if (Build.VERSION.SDK_INT >= 33) {
+            requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+        }
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        updateCircularProgressBar()
+    }
+
+    private fun updateCircularProgressBar(){
+        val count = SharedPreferencesHelper.getTransactionDatesCount(requireContext())
+        val progress = (count / 7.0) * 100
+        binding.circularProgressBar.progress = progress.toInt()
+        binding.progressText.text = "$count of 7"
+
+        if (count >= 7){
+            SharedPreferencesHelper.resetTransactionDates(requireContext())
+            binding.circularProgressBar.progress = 0
+            binding.progressText.text = "0 of 7"
+        }
     }
 
 
@@ -109,7 +145,8 @@ class HomeFragment : Fragment(), LimitDialogFragment.LimitSetListener {
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
         val savedLimit = sharedPref?.getInt("spending_limit", 0)
         if (savedLimit != null && savedLimit != 0){
-            binding.tvMoney.text = savedLimit.toString()
+            val formattedLimit = mCurrencyFormat.format(savedLimit)
+            binding.tvMoney.text = formattedLimit
             this.savedLimit = savedLimit
             updateProgressBar()
         }
@@ -129,7 +166,8 @@ class HomeFragment : Fragment(), LimitDialogFragment.LimitSetListener {
     }
     private fun observeTotalExpense() {
         viewModel.totalExpense.observe(viewLifecycleOwner){totalExpense->
-            binding.tvTotalExpense.text = totalExpense?.toString() ?: "0"
+            val formattedExpense = mCurrencyFormat.format(totalExpense ?: 0)
+            binding.tvTotalExpense.text = formattedExpense
             updateProgressBar()
         }
     }

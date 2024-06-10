@@ -8,6 +8,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.gebung.database.Transaction
 import com.example.gebung.databinding.CustomDialogBinding
+import com.example.gebung.ui.home.SharedPreferencesHelper
 import com.example.gebung.viewmodel.TransactionViewModel
 import com.example.gebung.viewmodel.ViewModelFactory
 import java.util.Calendar
@@ -30,18 +31,16 @@ class CustomDialogFragment: DialogFragment() {
 
         binding.edCategory.setText(category)
         val title = binding.edTitle.text
-        val date = binding.edDate.text
+        binding.edDate.setOnClickListener {
+            showDatePickerDialog()
+        }
         val price = binding.edPrice.text
         val radioGroup = binding.rgOptions
         val radioButtonIncome = binding.radioIncome
         val radioButtonExpense = binding.radioExpense
 
-        binding.edDate.setOnClickListener {
-            showDatePickerDialog()
-        }
-
         binding.btnSave.setOnClickListener {
-
+            val date = binding.edDate.text
             val type = when (radioGroup.checkedRadioButtonId) {
                 radioButtonIncome.id -> "Income"
                 radioButtonExpense.id -> "Expense"
@@ -55,6 +54,7 @@ class CustomDialogFragment: DialogFragment() {
                 nominal = price.toString().toIntOrNull() ?: 0,
                 type = type)
             viewModel.insert(transaction)
+            SharedPreferencesHelper.addTransactionDate(requireContext(), date.toString())
             showSuccessDialog()
             dismiss()
         }
@@ -68,30 +68,24 @@ class CustomDialogFragment: DialogFragment() {
         return builder.create()
     }
 
-    private fun showSuccessDialog() {
-        val dialog = SuccessDialogFragment()
-
-        dialog.show(requireActivity().supportFragmentManager, "success_dialog")
-    }
-
     private fun showDatePickerDialog() {
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
         val month = calendar.get(Calendar.MONTH)
         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-        val datePickerDialog = DatePickerDialog(
-            requireContext(),
-            { _, selectedYear, selectedMonth, selectedDay ->
-                val date = "$selectedDay/${selectedMonth + 1}/$selectedYear"
-                binding.edDate.setText(date)
-            },
-            year,
-            month,
-            day
-        )
+        val datePickerDialog = DatePickerDialog(requireContext(), { _, selectedYear, selectedMonth, selectedDay ->
+            val selectedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
+            binding.edDate.setText(selectedDate)
+        }, year, month, day)
 
         datePickerDialog.show()
+    }
+
+    private fun showSuccessDialog() {
+        val dialog = SuccessDialogFragment()
+
+        dialog.show(requireActivity().supportFragmentManager, "success_dialog")
     }
 
     companion object{

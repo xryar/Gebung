@@ -2,9 +2,13 @@ package com.example.gebung.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.gebung.R
 import com.example.gebung.database.Transaction
 import com.example.gebung.databinding.ListTransactionBinding
+import java.text.NumberFormat
+import java.util.Locale
 
 class HomeAdapter: RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
@@ -20,7 +24,23 @@ class HomeAdapter: RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
             binding.apply {
                 tvInfo.text = listTransaction.title
                 tvDate.text = listTransaction.date
-                tvMoney.text = listTransaction.nominal.toString()
+                val mCurrencyFormat = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
+                val formattedNominal = mCurrencyFormat.format(listTransaction.nominal)
+                tvMoney.text = formattedNominal
+
+                val color = when(listTransaction.type){
+                    "Income" -> ContextCompat.getColor(binding.root.context, R.color.colorIncome)
+                    "Expense" -> ContextCompat.getColor(binding.root.context, R.color.colorExpense)
+                    else -> ContextCompat.getColor(binding.root.context, R.color.black)
+                }
+                tvMoney.setTextColor(color)
+
+                val iconRes = when (listTransaction.type) {
+                    "Income" -> R.drawable.ic_income
+                    "Expense" -> R.drawable.ic_expense
+                    else -> R.drawable.ic_expense // Add a default image if necessary
+                }
+                imgInfo.setImageResource(iconRes)
             }
         }
     }
