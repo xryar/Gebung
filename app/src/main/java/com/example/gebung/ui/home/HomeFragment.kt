@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +25,9 @@ import com.example.gebung.ui.history.HistoryActivity
 import com.example.gebung.viewmodel.TransactionViewModel
 import com.example.gebung.viewmodel.ViewModelFactory
 import java.text.NumberFormat
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
 import java.util.Locale
 
 class HomeFragment : Fragment(), LimitDialogFragment.LimitSetListener {
@@ -43,7 +47,7 @@ class HomeFragment : Fragment(), LimitDialogFragment.LimitSetListener {
         }
 
     private var savedLimit: Int = 0
-    var mCurrencyFormat = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
+    private var mCurrencyFormat = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,7 +58,7 @@ class HomeFragment : Fragment(), LimitDialogFragment.LimitSetListener {
 
         val factory = ViewModelFactory(requireActivity().application)
         // Gunakan ViewModelFactory saat membuat instance dari TransactionViewModel
-        viewModel = ViewModelProvider(this, factory).get(TransactionViewModel::class.java)
+        viewModel = ViewModelProvider(this, factory)[TransactionViewModel::class.java]
         adapter = HomeAdapter()
         showRecyclerView()
         showViewModel()
@@ -69,11 +73,15 @@ class HomeFragment : Fragment(), LimitDialogFragment.LimitSetListener {
 
     override fun onResume() {
         super.onResume()
+        loadSavedLimit()
+        observeTotalExpense()
         updateCircularProgressBar()
     }
 
+
     private fun updateCircularProgressBar(){
-        val count = SharedPreferencesHelper.getTransactionDatesCount(requireContext())
+        val count = SharedPreferencesHelper.getTransactionDatesInCurrentWeek(requireContext()).size
+        Log.d("HomeFragment", "Current week transaction count: $count")
         val progress = (count / 7.0) * 100
         binding.circularProgressBar.progress = progress.toInt()
         binding.progressText.text = "$count of 7"
@@ -82,12 +90,12 @@ class HomeFragment : Fragment(), LimitDialogFragment.LimitSetListener {
             SharedPreferencesHelper.resetTransactionDates(requireContext())
             binding.circularProgressBar.progress = 0
             binding.progressText.text = "0 of 7"
+            Log.d("HomeFragment", "Transaction dates reset after reaching 7")
         }
     }
 
 
-    private fun updateProgressBar() {
-        val totalExpense = viewModel.totalExpense.value ?: 0
+    private fun updateProgressBar(totalExpense: Int) {
         if (savedLimit > 0){
             binding.horizontalProgressBar.max = savedLimit
             binding.horizontalProgressBar.progress = totalExpense
@@ -126,9 +134,11 @@ class HomeFragment : Fragment(), LimitDialogFragment.LimitSetListener {
     }
 
     override fun onLimitSet(limit: Int){
-        binding.tvMoney.text = limit.toString()
+        val currentMonth = getCurrentMonthExpense()
+        val formattedLimit = mCurrencyFormat.format(limit)
+        binding.tvMoney.text = formattedLimit
         saveLimit(limit)
-        updateProgressBar()
+        updateProgressBar(viewModel.updateTotalExpense(currentMonth).value ?: 0)
         saveNotificationStatus(false) //Reset
     }
 
@@ -136,20 +146,39 @@ class HomeFragment : Fragment(), LimitDialogFragment.LimitSetListener {
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
         with(sharedPref.edit()){
             putInt("spending_limit", limit)
+            putInt("last_reset_month", getCurrentMonth())
             apply()
         }
         savedLimit = limit
     }
 
     private fun loadSavedLimit() {
+        val currentMonthExpense = getCurrentMonthExpense()
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
+        val currentMonth = getCurrentMonth()
+        val lastRestMonth = sharedPref?.getInt("last_reset_month", -1)
+
+        if (lastRestMonth != currentMonth){
+            saveLimit(0)
+        }
+
         val savedLimit = sharedPref?.getInt("spending_limit", 0)
         if (savedLimit != null && savedLimit != 0){
             val formattedLimit = mCurrencyFormat.format(savedLimit)
             binding.tvMoney.text = formattedLimit
             this.savedLimit = savedLimit
-            updateProgressBar()
+            updateProgressBar(viewModel.updateTotalExpense(currentMonthExpense).value ?: 0)
         }
+    }
+
+    private fun getCurrentMonth(): Int{
+        val calendar = Calendar.getInstance()
+        return calendar.get(Calendar.MONTH)
+    }
+
+    private fun getCurrentMonthExpense(): String{
+        val dateFormat = SimpleDateFormat("yyyy-MM", Locale.getDefault())
+        return dateFormat.format(Date())
     }
 
     private fun saveNotificationStatus(status: Boolean){
@@ -165,10 +194,17 @@ class HomeFragment : Fragment(), LimitDialogFragment.LimitSetListener {
         return sharedPref?.getBoolean("notification_sent", false) ?: false
     }
     private fun observeTotalExpense() {
-        viewModel.totalExpense.observe(viewLifecycleOwner){totalExpense->
+//        viewModel.totalExpense.observe(viewLifecycleOwner){totalExpense->
+//            val formattedExpense = mCurrencyFormat.format(totalExpense ?: 0)
+//            binding.tvTotalExpense.text = formattedExpense
+//            updateProgressBar()
+//        }
+        val currentMonth = getCurrentMonthExpense()
+        viewModel.updateTotalExpense(currentMonth).observe(viewLifecycleOwner){ totalExpense ->
+            Log.d("FilterDataByMonth", "Total Expense: $totalExpense")
             val formattedExpense = mCurrencyFormat.format(totalExpense ?: 0)
             binding.tvTotalExpense.text = formattedExpense
-            updateProgressBar()
+            updateProgressBar(totalExpense ?: 0)
         }
     }
 

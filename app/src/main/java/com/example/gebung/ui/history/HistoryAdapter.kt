@@ -22,10 +22,10 @@ class HistoryAdapter: RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
     class HistoryViewHolder(private val binding: ListHistoryTransactionBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(listHistory: Transaction){
             binding.apply {
-                tvInfo.text = listHistory.title
+                tvInfo.text = listHistory.description
                 tvDate.text = listHistory.date
                 val mCurrencyFormat = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
-                val formattedNominal = mCurrencyFormat.format(listHistory.nominal)
+                val formattedNominal = mCurrencyFormat.format(listHistory.amount)
                 tvMoney.text = formattedNominal
 
                 val color = when(listHistory.type){
@@ -37,8 +37,8 @@ class HistoryAdapter: RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
 
                 val iconRes = when(listHistory.type){
                     "Income" -> R.drawable.ic_income
-                    "Expense" -> R.drawable.ic_expense
-                    else -> R.drawable.ic_expense
+                    "Expense" -> R.drawable.ic_income
+                    else -> R.drawable.ic_income
                 }
                 viewCircle.setImageResource(iconRes)
             }
