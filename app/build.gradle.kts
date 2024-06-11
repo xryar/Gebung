@@ -64,4 +64,5 @@ dependencies {
     ksp(libs.room.compiler)
 
     implementation (libs.mpandroidchart)
+    implementation ("org.tensorflow:tensorflow-lite:2.8.0")
 }
