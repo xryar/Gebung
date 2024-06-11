@@ -21,9 +21,6 @@ interface TransactionDao {
     @Query("SELECT * FROM transaction_table ORDER BY id ASC")
     fun getAllTransactionASC(): LiveData<List<Transaction>>
 
-//    @Query("SELECT SUM(amount) FROM transaction_table WHERE type = :transactionType")
-//    fun getTotalNominal(transactionType: String): LiveData<Int>
-
     @Query("SELECT SUM(amount) FROM transaction_table WHERE type = 'Expense' AND strftime('%Y-%m', Date) = :month")
     fun getTotalExpenseForMonth(month:String): LiveData<Int>
 

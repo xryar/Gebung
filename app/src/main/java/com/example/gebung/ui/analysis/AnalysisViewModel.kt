@@ -12,7 +12,6 @@ import com.example.gebung.database.TransactionRoomDatabase
 class AnalysisViewModel(application: Application) : ViewModel() {
 
     private val dataDao: TransactionDao = TransactionRoomDatabase.getDatabase(application).transactionDao()
-    val allData: LiveData<List<Transaction>> = dataDao.getAllTransactionASC()
 
     val monthlyTotals: LiveData<List<MonthlyTotal>> = dataDao.getMonthlyTotals("Expense")
 

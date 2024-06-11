@@ -37,11 +37,6 @@ class AnalysisFragment : Fragment() {
         val factory = ViewModelFactory(requireActivity().application)
 
         viewModel = ViewModelProvider(this, factory)[AnalysisViewModel::class.java]
-//        viewModel.allData.observe(viewLifecycleOwner) { dataList ->
-//            dataList?.let {
-//                displayChart(it)
-//            }
-//        }
 
         viewModel.monthlyTotals.observe(viewLifecycleOwner) { dataList ->
             dataList?.let {
@@ -96,6 +91,7 @@ class AnalysisFragment : Fragment() {
         binding.PredictChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
         binding.PredictChart.xAxis.granularity = 1f
         binding.PredictChart.invalidate()
+
     }
 
 }
