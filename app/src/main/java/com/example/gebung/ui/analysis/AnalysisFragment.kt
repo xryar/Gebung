@@ -21,15 +21,15 @@ import org.tensorflow.lite.Interpreter
 import java.io.FileInputStream
 import java.nio.MappedByteBuffer
 import java.nio.channels.FileChannel
+import java.text.NumberFormat
+import java.util.Locale
 
 class AnalysisFragment : Fragment() {
 
     private lateinit var binding: FragmentAnalysisBinding
     private lateinit var viewModel: AnalysisViewModel
     private lateinit var interpreter: Interpreter
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    private var mCurrencyFormat = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -81,8 +81,17 @@ class AnalysisFragment : Fragment() {
         val inputBuffer = arrayOf(inputArray)
         val outputBuffer = Array(1){ FloatArray(1)}
 
-        interpreter.run(inputBuffer, outputBuffer)
-        return outputBuffer[0]
+        Log.d("AnalysisFragment", "Input shape: ${inputBuffer.size}x${inputBuffer[0].size}")
+        Log.d("AnalysisFragment", "Output shape: ${outputBuffer.size}x${outputBuffer[0].size}")
+
+        try {
+            interpreter.run(inputBuffer, outputBuffer)
+            Log.d("AnalysisFragment", "Prediction successful: ${outputBuffer[0].contentToString()}")
+            return outputBuffer[0]
+        } catch (e: IllegalArgumentException) {
+            Log.e("AnalysisFragment", "Error during prediction: ${e.message}")
+            return FloatArray(0) // Return an empty array or handle it accordingly
+        }
     }
 
     private fun setDataToChart(monthlyTotals: List<MonthlyTotal>) {
@@ -104,12 +113,13 @@ class AnalysisFragment : Fragment() {
 
         //Prediksi total bulan berikutnya
         val predictTotal = predictNextMonthTotals(monthlyTotals)
+
         predictTotal.forEachIndexed{ index, total ->
             predictionEntries.add(Entry((monthlyTotals.size + index).toFloat(), total))
             labels.add("Prediksi ${index + 1 + (viewModel.previousPredictions.value?.size ?: 0)}")
         }
 
-            viewModel.addPrediction(predictTotal.toList())
+        viewModel.addPrediction(predictTotal.toList())
 
         val expenseDataSet = LineDataSet(totalExpenseEntries, "Monthly Expenses").apply {
             color = Color.RED

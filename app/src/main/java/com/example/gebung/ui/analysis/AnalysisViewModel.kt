@@ -34,6 +34,7 @@ class AnalysisViewModel(application: Application) : ViewModel() {
         val updatedPredictions = _previousPredictions.value ?: mutableListOf()
         updatedPredictions.addAll(predictions)
         _previousPredictions.value = updatedPredictions
+        _previousPredictions.postValue(updatedPredictions)
     }
 
 
