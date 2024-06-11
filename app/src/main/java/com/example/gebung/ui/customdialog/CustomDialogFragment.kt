@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.gebung.database.Transaction
@@ -25,7 +26,7 @@ class CustomDialogFragment: DialogFragment() {
 
         val factory = ViewModelFactory(requireActivity().application)
         // Gunakan ViewModelFactory saat membuat instance dari TransactionViewModel
-        viewModel = ViewModelProvider(this, factory).get(TransactionViewModel::class.java)
+        viewModel = ViewModelProvider(this, factory)[TransactionViewModel::class.java]
 
         val category = arguments?.getString(CATEGORY) ?: ""
 
@@ -41,6 +42,7 @@ class CustomDialogFragment: DialogFragment() {
 
         binding.btnSave.setOnClickListener {
             val date = binding.edDate.text
+            Log.d("CustomDialogFragment", "Saving transaction with date: $date")
             val type = when (radioGroup.checkedRadioButtonId) {
                 radioButtonIncome.id -> "Income"
                 radioButtonExpense.id -> "Expense"
@@ -48,10 +50,10 @@ class CustomDialogFragment: DialogFragment() {
             }
 
             val transaction = Transaction(
-                title = title.toString(),
+                description = title.toString(),
                 category = category,
                 date = date.toString(),
-                nominal = price.toString().toIntOrNull() ?: 0,
+                amount = price.toString().toIntOrNull() ?: 0,
                 type = type)
             viewModel.insert(transaction)
             SharedPreferencesHelper.addTransactionDate(requireContext(), date.toString())
@@ -75,12 +77,13 @@ class CustomDialogFragment: DialogFragment() {
         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
         val datePickerDialog = DatePickerDialog(requireContext(), { _, selectedYear, selectedMonth, selectedDay ->
-            val selectedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
+            val selectedDate = String.format("%04d-%02d-%02d", selectedYear, selectedMonth + 1, selectedDay)
             binding.edDate.setText(selectedDate)
         }, year, month, day)
 
         datePickerDialog.show()
     }
+
 
     private fun showSuccessDialog() {
         val dialog = SuccessDialogFragment()

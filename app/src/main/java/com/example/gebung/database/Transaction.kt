@@ -8,21 +8,21 @@ import androidx.room.PrimaryKey
 data class Transaction(
 
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
+    @ColumnInfo(name = "Id")
     var id: Int = 0,
 
-    @ColumnInfo(name = "title")
-    var title: String,
+    @ColumnInfo(name = "Description")
+    var description: String,
 
-    @ColumnInfo(name = "category")
+    @ColumnInfo(name = "Category")
     var category: String,
 
-    @ColumnInfo(name = "date")
+    @ColumnInfo(name = "Date")
     var date: String,
 
-    @ColumnInfo(name = "nominal")
-    var nominal: Int,
+    @ColumnInfo(name = "Amount")
+    var amount: Int,
 
-    @ColumnInfo(name = "type")
+    @ColumnInfo(name = "Type")
     var type: String
 )

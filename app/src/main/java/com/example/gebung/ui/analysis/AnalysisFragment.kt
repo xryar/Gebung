@@ -47,7 +47,7 @@ class AnalysisFragment : Fragment() {
         val spendingEntries = mutableListOf<Entry>()
 
         dataList.forEachIndexed { index, data ->
-            spendingEntries.add(Entry(index.toFloat(), data.nominal.toFloat()))
+            spendingEntries.add(Entry(index.toFloat(), data.amount.toFloat()))
         }
 
         val spendingDataSet = LineDataSet(spendingEntries, "Spending").apply {

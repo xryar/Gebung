@@ -14,8 +14,4 @@ class AnalysisViewModel(application: Application) : ViewModel() {
     private val dataDao: TransactionDao = TransactionRoomDatabase.getDatabase(application).transactionDao()
     val allData: LiveData<List<Transaction>> = dataDao.getAllTransactionASC()
 
-    fun insert(data: Transaction) = viewModelScope.launch {
-        dataDao.insert(data)
-    }
-
 }

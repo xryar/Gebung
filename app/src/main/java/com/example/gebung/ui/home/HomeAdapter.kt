@@ -22,10 +22,10 @@ class HomeAdapter: RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
     class HomeViewHolder(private val binding:ListTransactionBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(listTransaction: Transaction){
             binding.apply {
-                tvInfo.text = listTransaction.title
+                tvInfo.text = listTransaction.description
                 tvDate.text = listTransaction.date
                 val mCurrencyFormat = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
-                val formattedNominal = mCurrencyFormat.format(listTransaction.nominal)
+                val formattedNominal = mCurrencyFormat.format(listTransaction.amount)
                 tvMoney.text = formattedNominal
 
                 val color = when(listTransaction.type){
@@ -37,8 +37,8 @@ class HomeAdapter: RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
                 val iconRes = when (listTransaction.type) {
                     "Income" -> R.drawable.ic_income
-                    "Expense" -> R.drawable.ic_expense
-                    else -> R.drawable.ic_expense // Add a default image if necessary
+                    "Expense" -> R.drawable.ic_income
+                    else -> R.drawable.ic_income // Add a default image if necessary
                 }
                 imgInfo.setImageResource(iconRes)
             }

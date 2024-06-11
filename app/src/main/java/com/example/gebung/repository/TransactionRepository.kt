@@ -6,6 +6,7 @@ import com.example.gebung.database.Transaction
 import com.example.gebung.database.TransactionDao
 import com.example.gebung.database.TransactionRoomDatabase
 
+
 class TransactionRepository(application: Application) {
 
     private val mTransactionDao: TransactionDao
@@ -23,8 +24,12 @@ class TransactionRepository(application: Application) {
 
     fun getAllTransaction(): LiveData<List<Transaction>> = mTransactionDao.getAllTransaction()
 
-    fun getTotalExpenseNominal(): LiveData<Int>{
-        return mTransactionDao.getTotalNominal("Expense")
+//    fun getTotalExpenseNominal(): LiveData<Int>{
+//        return mTransactionDao.getTotalNominal("Expense")
+//    }
+
+    fun getTotalExpenseForMonth(month: String): LiveData<Int>{
+        return mTransactionDao.getTotalExpenseForMonth(month)
     }
 
 }
