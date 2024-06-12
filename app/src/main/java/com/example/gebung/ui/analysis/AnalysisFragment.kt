@@ -49,6 +49,7 @@ class AnalysisFragment : Fragment() {
             dataList?.let {
                 if (it.isNotEmpty()) {
                     Log.d("AnalysisFragment", "Data received: $it")
+                    viewModel.updatePredictionsIfNeeded(it, interpreter)
                     setDataToChart(it)
                 } else {
                     Log.d("AnalysisFragment", "No data available")
@@ -56,10 +57,11 @@ class AnalysisFragment : Fragment() {
             }
         }
 
-        viewModel.previousPredictions.observe(viewLifecycleOwner){ predictions ->
+        viewModel.previousPredictions.observe(viewLifecycleOwner) { predictions ->
             predictions?.let {
-                if (it.isNotEmpty()){
-                    Log.d("AnalysisFragment", "Previous predictions : $it")
+                if (it.isNotEmpty()) {
+                    Log.d("AnalysisFragment", "Previous predictions: $it")
+                    setDataToChart(viewModel.monthlyTotals.value ?: emptyList())
                 }
             }
         }
@@ -76,24 +78,6 @@ class AnalysisFragment : Fragment() {
         return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength)
     }
 
-    private fun predictNextMonthTotals(monthlyTotals: List<MonthlyTotal>): FloatArray{
-        val inputArray = FloatArray(monthlyTotals.size) {i -> monthlyTotals[i].total.toFloat()}
-        val inputBuffer = arrayOf(inputArray)
-        val outputBuffer = Array(1){ FloatArray(1)}
-
-        Log.d("AnalysisFragment", "Input shape: ${inputBuffer.size}x${inputBuffer[0].size}")
-        Log.d("AnalysisFragment", "Output shape: ${outputBuffer.size}x${outputBuffer[0].size}")
-
-        try {
-            interpreter.run(inputBuffer, outputBuffer)
-            Log.d("AnalysisFragment", "Prediction successful: ${outputBuffer[0].contentToString()}")
-            return outputBuffer[0]
-        } catch (e: IllegalArgumentException) {
-            Log.e("AnalysisFragment", "Error during prediction: ${e.message}")
-            return FloatArray(0) // Return an empty array or handle it accordingly
-        }
-    }
-
     private fun setDataToChart(monthlyTotals: List<MonthlyTotal>) {
         val totalExpenseEntries = mutableListOf<Entry>()
         val predictionEntries = mutableListOf<Entry>()
@@ -105,21 +89,10 @@ class AnalysisFragment : Fragment() {
             labels.add(total.month ?: "unknown")
         }
 
-        //Menambahkan hasil prediksi lama ke chart
-        viewModel.previousPredictions.value?.forEachIndexed{ index, total ->
+        viewModel.previousPredictions.value?.forEachIndexed { index, total ->
             predictionEntries.add(Entry((monthlyTotals.size + index).toFloat(), total))
             labels.add("Prediksi ${index + 1}")
         }
-
-        //Prediksi total bulan berikutnya
-        val predictTotal = predictNextMonthTotals(monthlyTotals)
-
-        predictTotal.forEachIndexed{ index, total ->
-            predictionEntries.add(Entry((monthlyTotals.size + index).toFloat(), total))
-            labels.add("Prediksi ${index + 1 + (viewModel.previousPredictions.value?.size ?: 0)}")
-        }
-
-        viewModel.addPrediction(predictTotal.toList())
 
         val expenseDataSet = LineDataSet(totalExpenseEntries, "Monthly Expenses").apply {
             color = Color.RED
@@ -139,7 +112,16 @@ class AnalysisFragment : Fragment() {
         binding.PredictChart.invalidate()
         val legend = binding.PredictChart.legend
         legend.form = Legend.LegendForm.LINE
+
+        updatePredictionsDisplay(viewModel.previousPredictions.value ?: emptyList())
     }
+
+    private fun updatePredictionsDisplay(predictions: List<Float>) {
+        val formattedPredictions = predictions.map { mCurrencyFormat.format(it) }
+        val formattedCurrency = formattedPredictions.joinToString()
+        binding.tvMoney.text = formattedCurrency
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
