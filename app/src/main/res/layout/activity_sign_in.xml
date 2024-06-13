@@ -82,6 +82,7 @@
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
             android:layout_marginTop="4dp"
+            app:boxBackgroundColor="@color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_signin_email"
@@ -109,7 +110,7 @@
             app:layout_constraintStart_toStartOf="parent"/>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/passwordEdittextLayout"
+            android:id="@+id/passwordEditTextLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -117,6 +118,7 @@
             android:layout_marginEnd="25dp"
             android:layout_marginTop="4dp"
             app:endIconMode="password_toggle"
+            app:boxBackgroundColor="@color/white"
             app:layout_constraintTop_toBottomOf="@id/tv_singin_password"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -142,7 +144,7 @@
             android:layout_marginEnd="25dp"
             android:layout_marginTop="12dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/passwordEdittextLayout"/>
+            app:layout_constraintTop_toBottomOf="@id/passwordEditTextLayout"/>
 
         <TextView
             android:id="@+id/tv_signin_orcontinuewith"

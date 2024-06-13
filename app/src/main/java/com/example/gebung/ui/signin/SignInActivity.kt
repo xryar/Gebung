@@ -2,6 +2,8 @@ package com.example.gebung.ui.signin
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Patterns
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -10,31 +12,90 @@ import com.example.gebung.MainActivity
 import com.example.gebung.R
 import com.example.gebung.databinding.ActivitySignInBinding
 import com.example.gebung.ui.signup.SignUpActivity
+import com.google.firebase.auth.FirebaseAuth
 
 class SignInActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignInBinding
+    private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        auth = FirebaseAuth.getInstance()
+
+        actionListener()
+
+    }
+
+    private fun actionListener() {
+
+        binding.btnSingin.setOnClickListener {
+
+            val email = binding.emailEditText.text.toString()
+            val password = binding.passwordEditText.text.toString()
+
+            if (email.isEmpty()){
+                binding.emailEditText.error = "Please enter your email"
+                binding.emailEditText.requestFocus()
+                return@setOnClickListener
+            }
+
+            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                binding.emailEditText.error = "Email not valid"
+                binding.emailEditText.requestFocus()
+                return@setOnClickListener
+            }
+
+            if (password.isEmpty()){
+                binding.passwordEditText.error = "Please enter your password"
+                binding.passwordEditText.requestFocus()
+                return@setOnClickListener
+            }
+
+            if (password.length < 8) {
+                binding.passwordEditText.error = "Password must be at least 8 characters"
+                binding.passwordEditText.requestFocus()
+                return@setOnClickListener
+            }
+
+            loginFirebase(email, password)
+
         }
 
         binding.tvSignup.setOnClickListener {
-        val intent = Intent(this, SignUpActivity::class.java)
-        startActivity(intent)
-        }
-        binding.btnSingin.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
 
-    }override fun onBackPressed() {
+    }
+
+    private fun loginFirebase(email: String, password: String) {
+
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) {
+                if (it.isSuccessful) {
+                    Toast.makeText(
+                        this,
+                        "Login Success",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+
+                } else {
+                    Toast.makeText(
+                        this,
+                        "${it.exception?.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+    }
+
+    override fun onBackPressed() {
         super.onBackPressed()
         // Intent for going back to home screen
         val intent = Intent(Intent.ACTION_MAIN)
