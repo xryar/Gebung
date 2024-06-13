@@ -108,4 +108,5 @@
     <string name="transport">Transport</string>
     <string name="food">Food</string>
     <string name="shop">Shop</string>
+    <string name="predicted_expenses_for_n_next_month">Predicted Expenses For\n Next Month</string>
 </resources>
