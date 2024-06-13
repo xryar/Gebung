@@ -8,7 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFF</color>
     <color name="main_background">#015C91</color>
-    <color name="red">#FF204E</color>
+    <color name="red">#FF2C2C</color>
     <color name="transparent_background">#99FFFFFF</color>
     <color name="popup_background">#FAFAFAE5</color>
     <color name="button_text_color">#FAFAFA</color>
@@ -23,5 +23,5 @@
     <color name="button_home">#002548</color>
 
     <color name="colorIncome">#65B5FF</color>
-    <color name="colorExpense">#FF204E</color>
+    <color name="colorExpense">#FF2C2C</color>
 </resources>

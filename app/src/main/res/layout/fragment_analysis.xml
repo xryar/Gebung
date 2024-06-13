@@ -24,7 +24,7 @@
         android:id="@+id/tv_predict"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Predicted Expenses For\n This Month"
+        android:text="@string/predicted_expenses_for_n_next_month"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textColor="@color/white"
