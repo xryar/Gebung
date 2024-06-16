@@ -1,14 +1,17 @@
 package com.example.gebung.ui.analysis
 
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.gebung.database.MonthlyTotal
+import com.example.gebung.database.Prediction
 import com.example.gebung.databinding.FragmentAnalysisBinding
 import com.example.gebung.viewmodel.ViewModelFactory
 import com.github.mikephil.charting.components.Legend
@@ -31,6 +34,7 @@ class AnalysisFragment : Fragment() {
     private lateinit var interpreter: Interpreter
     private var mCurrencyFormat = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -50,18 +54,17 @@ class AnalysisFragment : Fragment() {
                 if (it.isNotEmpty()) {
                     Log.d("AnalysisFragment", "Data received: $it")
                     viewModel.updatePredictionsIfNeeded(it, interpreter)
-                    setDataToChart(it)
+                    setDataToChart(it, viewModel.databasePrediction.value ?: emptyList())
                 } else {
                     Log.d("AnalysisFragment", "No data available")
                 }
             }
         }
 
-        viewModel.previousPredictions.observe(viewLifecycleOwner) { predictions ->
+        viewModel.databasePrediction.observe(viewLifecycleOwner){ predictions ->
             predictions?.let {
-                if (it.isNotEmpty()) {
-                    Log.d("AnalysisFragment", "Previous predictions: $it")
-                    setDataToChart(viewModel.monthlyTotals.value ?: emptyList())
+                if (viewModel.monthlyTotals.value?.isNotEmpty() == true){
+                    setDataToChart(viewModel.monthlyTotals.value!!, it)
                 }
             }
         }
@@ -78,38 +81,48 @@ class AnalysisFragment : Fragment() {
         return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength)
     }
 
-    private fun setDataToChart(monthlyTotals: List<MonthlyTotal>) {
+
+    private fun setDataToChart(monthlyTotals: List<MonthlyTotal>, predictions: List<Prediction>) {
         val totalExpenseEntries = mutableListOf<Entry>()
         val predictionEntries = mutableListOf<Entry>()
         val labels = mutableListOf<String>()
 
-        monthlyTotals.forEachIndexed { index, total ->
-            Log.d("AnalysisFragment", "Month: ${total.month}, Total: ${total.total}")
-            totalExpenseEntries.add(Entry(index.toFloat(), total.total.toFloat()))
-            labels.add(total.month ?: "unknown")
-        }
+        val monthlyTotalMap = monthlyTotals.associateBy { it.month }
 
-        viewModel.previousPredictions.value?.forEachIndexed { index, total ->
-            predictionEntries.add(Entry((monthlyTotals.size + index).toFloat(), total))
-            labels.add("Prediksi ${index + 1}")
+        val allMonth = (monthlyTotals.map { it.month } + predictions.map { it.month }).distinct()
+
+        allMonth.forEachIndexed { index, month ->
+            val total = monthlyTotalMap[month]?.total?.toFloat() ?: 0f
+            totalExpenseEntries.add(Entry(index.toFloat(), total))
+            labels.add(month ?: "unknown")
+
+            val prediction = predictions.find { it.month == month }?.predicted ?: 0f
+            predictionEntries.add(Entry(index.toFloat(), prediction))
         }
 
         val expenseDataSet = LineDataSet(totalExpenseEntries, "Monthly Expenses").apply {
             color = Color.RED
             valueTextColor = Color.BLACK
+            lineWidth = 2f
         }
 
         val predictionDataSet = LineDataSet(predictionEntries, "Prediction").apply {
             color = Color.BLUE
             valueTextColor = Color.BLACK
+            lineWidth = 2f
         }
 
-        val lineData = LineData(predictionDataSet, expenseDataSet)
+        val lineData = LineData(expenseDataSet, predictionDataSet)
         binding.PredictChart.data = lineData
-        binding.PredictChart.xAxis.valueFormatter = IndexAxisValueFormatter(labels)
-        binding.PredictChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
-        binding.PredictChart.xAxis.granularity = 1f
+
+        val xAxis = binding.PredictChart.xAxis
+        xAxis.valueFormatter = IndexAxisValueFormatter(labels)
+        xAxis.position = XAxis.XAxisPosition.BOTTOM
+        xAxis.granularity = 1f
+        xAxis.labelRotationAngle = -45f
+
         binding.PredictChart.invalidate()
+
         val legend = binding.PredictChart.legend
         legend.form = Legend.LegendForm.LINE
 

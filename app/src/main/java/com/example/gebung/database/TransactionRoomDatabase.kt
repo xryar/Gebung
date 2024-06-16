@@ -5,10 +5,11 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Transaction::class], version = 1, exportSchema = false)
+@Database(entities = [Transaction::class, Prediction::class], version = 1, exportSchema = false)
 abstract class TransactionRoomDatabase : RoomDatabase() {
 
     abstract fun transactionDao(): TransactionDao
+    abstract fun predictionDao(): PredictionDao
 
     companion object {
         @Volatile

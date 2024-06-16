@@ -37,8 +37,8 @@ class HistoryAdapter: RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
 
                 val iconRes = when(listHistory.type){
                     "Income" -> R.drawable.ic_income
-                    "Expense" -> R.drawable.ic_income
-                    else -> R.drawable.ic_income
+                    "Expense" -> R.drawable.ic_expense
+                    else -> R.drawable.ic_expense
                 }
                 viewCircle.setImageResource(iconRes)
             }
