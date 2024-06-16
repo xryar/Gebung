@@ -33,11 +33,6 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
         }
 
-        binding.cvAboutProfile.setOnClickListener {
-            val intent = Intent(activity, AboutActivity::class.java)
-            startActivity(intent)
-        }
-
         binding.cvLogoutProfile.setOnClickListener {
             showDialog()
         }

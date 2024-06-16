@@ -86,19 +86,32 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ed_category"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_date"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/label_date"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:inputType="date"
-            android:ems="10"
-            android:hint="@string/date_hint"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginTop="10dp"
+            android:text="Atur Tanggal"
+            android:textColor="@color/main_background"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:drawableStart="@drawable/ic_date"
+            android:drawableTint="@color/main_background"
+            android:gravity="start|center"
+            android:layout_marginStart="28dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_date"/>
+        
+        <TextView
+            android:id="@+id/text_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="01/01/2021"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="22dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_date" />
 
         <TextView
             android:id="@+id/tv_price"
@@ -110,7 +123,7 @@
             android:layout_marginStart="28dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ed_date"/>
+            app:layout_constraintTop_toBottomOf="@id/label_date"/>
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/ed_price"
