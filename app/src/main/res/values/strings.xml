@@ -62,7 +62,7 @@
     <!---  Edit Profile  -->
     <string name="save">Save</string>
     <string name="price">Price</string>
-    <string name="date">Date</string>
+    <string name="date">00/00/0000</string>
     <string name="title">Title</string>
     <string name="dialog_title">+ Add New</string>
 
@@ -91,7 +91,6 @@
     <string name="enter_your_price">Enter Your Price</string>
     <string name="enter_your_category">Enter Your Category</string>
     <string name="type">Type</string>
-    <string name="date_hint">00/00/0000</string>
     <string name="enter_your_title">Enter Your Title</string>
 
     <!--  Analysis  -->
@@ -109,4 +108,5 @@
     <string name="food">Food</string>
     <string name="shop">Shop</string>
     <string name="predicted_expenses_for_n_next_month">Predicted Expenses For\n Next Month</string>
+    <string name="set_date">Atur Tanggal</string>
 </resources>
