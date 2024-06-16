@@ -32,7 +32,7 @@ class CustomDialogFragment: DialogFragment() {
 
         binding.edCategory.setText(category)
         val title = binding.edTitle.text
-        binding.edDate.setOnClickListener {
+        binding.labelDate.setOnClickListener {
             showDatePickerDialog()
         }
         val price = binding.edPrice.text
@@ -41,7 +41,7 @@ class CustomDialogFragment: DialogFragment() {
         val radioButtonExpense = binding.radioExpense
 
         binding.btnSave.setOnClickListener {
-            val date = binding.edDate.text
+            val date = binding.textDate.text
             Log.d("CustomDialogFragment", "Saving transaction with date: $date")
             val type = when (radioGroup.checkedRadioButtonId) {
                 radioButtonIncome.id -> "Income"
@@ -78,7 +78,7 @@ class CustomDialogFragment: DialogFragment() {
 
         val datePickerDialog = DatePickerDialog(requireContext(), { _, selectedYear, selectedMonth, selectedDay ->
             val selectedDate = String.format("%04d-%02d-%02d", selectedYear, selectedMonth + 1, selectedDay)
-            binding.edDate.setText(selectedDate)
+            binding.textDate.text = selectedDate
         }, year, month, day)
 
         datePickerDialog.show()
