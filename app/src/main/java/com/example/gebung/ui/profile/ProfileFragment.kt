@@ -40,8 +40,8 @@ class ProfileFragment : Fragment() {
     }
 
     private fun actionListener() {
-        binding.cvEditProfile.setOnClickListener {
-            val intent = Intent(activity, EditProfileActivity::class.java)
+        binding.cvAbout.setOnClickListener {
+            val intent = Intent(activity, AboutActivity::class.java)
             startActivity(intent)
         }
 

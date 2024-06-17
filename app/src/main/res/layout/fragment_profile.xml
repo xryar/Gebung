@@ -68,7 +68,7 @@
             android:background="@color/transparent_background">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cv_edit_profile"
+                android:id="@+id/cv_about"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="37dp"
@@ -84,7 +84,7 @@
                     android:layout_height="match_parent">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cv_about"
+                        android:id="@+id/about"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -139,7 +139,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cv_setting_profile"
+                android:id="@+id/cv_contact_us"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="21dp"
@@ -147,7 +147,7 @@
                 android:layout_marginEnd="13dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cv_edit_profile"
+                app:layout_constraintTop_toBottomOf="@id/cv_about"
                 app:cardCornerRadius="20dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -155,7 +155,7 @@
                     android:layout_height="match_parent">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cv_contact_us"
+                        android:id="@+id/contact_us"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -218,7 +218,7 @@
                 android:layout_marginEnd="13dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cv_setting_profile"
+                app:layout_constraintTop_toBottomOf="@id/cv_contact_us"
                 app:cardCornerRadius="20dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
