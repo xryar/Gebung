@@ -27,17 +27,17 @@
             android:layout_height="match_parent"
             android:paddingBottom="19dp">
 
-            <ImageView
-                android:id="@+id/img_profile"
-                android:layout_width="53dp"
-                android:layout_height="53dp"
-                android:layout_marginEnd="14dp"
-                android:layout_marginTop="20dp"
-                android:contentDescription="@string/foto_profile"
-                tools:src="@tools:sample/avatars"
+            <ImageButton
+                android:id="@+id/ib_notification"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="21dp"
+                android:layout_marginTop="24dp"
+                android:src="@drawable/ic_bell"
+                android:background="@drawable/notification_background"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/tv_greetings"
@@ -382,7 +382,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="25dp"
-            android:src="@drawable/other"
+            android:src="@drawable/ic_other"
             android:background="@drawable/home_button_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

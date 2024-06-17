@@ -1,6 +1,7 @@
 package com.example.gebung.ui.history
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -28,7 +29,10 @@ class HistoryActivity : AppCompatActivity() {
             insets
         }
 
-        adapter = HistoryAdapter()
+        adapter = HistoryAdapter{
+            viewModel.delete(it.id)
+            Toast.makeText(this@HistoryActivity, "Transaction Deleted", Toast.LENGTH_SHORT).show()
+        }
         val factory = ViewModelFactory(application)
         viewModel = ViewModelProvider(this, factory).get(TransactionViewModel::class.java)
 

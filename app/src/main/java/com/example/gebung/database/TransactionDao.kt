@@ -27,4 +27,7 @@ interface TransactionDao {
     @Query("SELECT strftime('%Y-%m', date) as month, SUM(amount) as total FROM transaction_table WHERE type = :transactionType GROUP BY month ORDER BY month ASC")
     fun getMonthlyTotals(transactionType: String): LiveData<List<MonthlyTotal>>
 
+    @Query("DELETE FROM transaction_table WHERE id = :id")
+    fun delete(id: Int)
+
 }

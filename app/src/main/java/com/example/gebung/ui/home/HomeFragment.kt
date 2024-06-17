@@ -15,12 +15,14 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.NotificationCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gebung.R
 import com.example.gebung.databinding.FragmentHomeBinding
 import com.example.gebung.ui.customdialog.CustomDialogFragment
 import com.example.gebung.ui.customdialog.LimitDialogFragment
+import com.example.gebung.ui.customdialog.NotificationDialogFragment
 import com.example.gebung.ui.history.HistoryActivity
 import com.example.gebung.viewmodel.TransactionViewModel
 import com.example.gebung.viewmodel.ViewModelFactory
@@ -201,11 +203,6 @@ class HomeFragment : Fragment(), LimitDialogFragment.LimitSetListener {
         return sharedPref?.getBoolean("notification_sent", false) ?: false
     }
     private fun observeTotalExpense() {
-//        viewModel.totalExpense.observe(viewLifecycleOwner){totalExpense->
-//            val formattedExpense = mCurrencyFormat.format(totalExpense ?: 0)
-//            binding.tvTotalExpense.text = formattedExpense
-//            updateProgressBar()
-//        }
         val currentMonth = getCurrentMonthExpense()
         viewModel.updateTotalExpense(currentMonth).observe(viewLifecycleOwner){ totalExpense ->
             Log.d("FilterDataByMonth", "Total Expense: $totalExpense")
@@ -262,6 +259,15 @@ class HomeFragment : Fragment(), LimitDialogFragment.LimitSetListener {
             dialog.show(requireActivity().supportFragmentManager, "LimitDialog")
         }
 
+        binding.ibNotification.setOnClickListener {
+            showNotificationDialog()
+        }
+
+    }
+
+    private fun showNotificationDialog() {
+        val dialog = NotificationDialogFragment()
+        dialog.show(parentFragmentManager, "NotificationDialogFragment")
     }
 
     private fun showDialog(category: String, isCategoryEditable: Boolean) {

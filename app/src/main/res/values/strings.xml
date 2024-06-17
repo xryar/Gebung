@@ -109,7 +109,11 @@
     <string name="shop">Shopping</string>
     <string name="predicted_expenses_for_n_next_month">Predicted Expenses For\n Next Month</string>
     <string name="set_date">Atur Tanggal</string>
-    
+
     <string name="your_web_client_id">228244129517-k4m4i252lklddnbgksrldj3kcg3qnsgt.apps.googleusercontent.com</string>
 
+    <!--  Notification  -->
+    <string name="notification_title">Set Your Daily Notification</string>
+    <string name="set_notification">Set Notification</string>
+    <string name="close_notification">Close</string>
 </resources>

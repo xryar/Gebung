@@ -10,7 +10,7 @@ import com.example.gebung.databinding.ListHistoryTransactionBinding
 import java.text.NumberFormat
 import java.util.Locale
 
-class HistoryAdapter: RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
+class HistoryAdapter(private val onDeleteClick: (Transaction) -> (Unit)): RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
 
     private val listHistoryTrans = ArrayList<Transaction>()
 
@@ -19,7 +19,7 @@ class HistoryAdapter: RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
         listHistoryTrans.addAll(getList)
         notifyDataSetChanged()
     }
-    class HistoryViewHolder(private val binding: ListHistoryTransactionBinding): RecyclerView.ViewHolder(binding.root) {
+    class HistoryViewHolder(private val binding: ListHistoryTransactionBinding, private val onDeleteClick: (Transaction) -> (Unit)): RecyclerView.ViewHolder(binding.root) {
         fun bind(listHistory: Transaction){
             binding.apply {
                 tvInfo.text = listHistory.description
@@ -41,13 +41,17 @@ class HistoryAdapter: RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
                     else -> R.drawable.ic_expense
                 }
                 viewCircle.setImageResource(iconRes)
+
+                ivDelete.setOnClickListener {
+                    onDeleteClick(listHistory)
+                }
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
         val binding = ListHistoryTransactionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return HistoryViewHolder(binding)
+        return HistoryViewHolder(binding, onDeleteClick)
     }
 
     override fun getItemCount(): Int = listHistoryTrans.size
