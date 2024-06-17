@@ -16,8 +16,8 @@
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_splashFragment_to_signInActivity"
-            app:destination="@id/signInActivity"
+            android:id="@+id/action_splashFragment_to_mainActivity"
+            app:destination="@id/mainActivity"
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
     </fragment>
@@ -27,14 +27,13 @@
         android:label="fragment_view_pager"
         tools:layout="@layout/fragment_view_pager" >
         <action
-            android:id="@+id/action_viewPagerFragment_to_signInActivity"
-            app:destination="@id/signInActivity"
+            android:id="@+id/action_viewPagerFragment_to_mainActivity"
+            app:destination="@id/mainActivity"
             app:popUpTo="@id/viewPagerFragment"
             app:popUpToInclusive="true" />
     </fragment>
     <activity
-        android:id="@+id/signInActivity"
-        android:name="com.example.gebung.ui.signin.SignInActivity"
-        android:label="activity_sign_in"
-        tools:layout="@layout/activity_sign_in" />
+        android:id="@+id/mainActivity"
+        android:name="com.example.gebung.MainActivity"
+        android:label="MainActivity" />
 </navigation>
