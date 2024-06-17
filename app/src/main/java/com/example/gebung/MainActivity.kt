@@ -32,7 +32,6 @@ class MainActivity : AppCompatActivity() {
         if (firebaseUser == null){
             startActivity(Intent(this, SignInActivity::class.java))
             finish()
-            return
         }
 
         val navView: BottomNavigationView = binding.navView

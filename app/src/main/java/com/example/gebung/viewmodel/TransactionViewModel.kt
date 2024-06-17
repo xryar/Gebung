@@ -12,8 +12,6 @@ class TransactionViewModel(application: Application): ViewModel() {
 
     private val mTransactionRepository: TransactionRepository = TransactionRepository(application)
 
-//    val totalExpense: LiveData<Int> = mTransactionRepository.getTotalExpenseNominal()
-
     fun insert(transaction: Transaction) = viewModelScope.launch {
         mTransactionRepository.insert(transaction)
     }
@@ -29,5 +27,9 @@ class TransactionViewModel(application: Application): ViewModel() {
     fun updateTotalExpense(selectedDate: String): LiveData<Int>{
         val month = selectedDate.substring(0, 7)
         return getTotalExpenseForMonth(month)
+    }
+
+    fun delete(id: Int){
+        mTransactionRepository.delete(id)
     }
 }
