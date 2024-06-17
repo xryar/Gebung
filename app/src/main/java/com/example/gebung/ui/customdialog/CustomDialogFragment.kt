@@ -5,6 +5,8 @@ import android.app.DatePickerDialog
 import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.ArrayAdapter
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.gebung.database.Transaction
@@ -29,8 +31,21 @@ class CustomDialogFragment: DialogFragment() {
         viewModel = ViewModelProvider(this, factory)[TransactionViewModel::class.java]
 
         val category = arguments?.getString(CATEGORY) ?: ""
+        val isCategoryEditable = arguments?.getBoolean(IS_CATEGORY_EDITABLE) ?: false
 
-        binding.edCategory.setText(category)
+        val categoryList = listOf("Groceries", "Food", "Utilities", "Shopping", "Transportation", "Mobile Phone", "Rent", "Entertainment", "Health", "Other")
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, categoryList)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spCategory.adapter = adapter
+
+        if (isCategoryEditable){
+            binding.spCategory.isEnabled = true
+            binding.spCategory.setSelection(categoryList.indexOf(category))
+        }else{
+            binding.spCategory.setSelection(categoryList.indexOf(category))
+            binding.spCategory.isEnabled = false
+        }
+
         val title = binding.edTitle.text
         binding.labelDate.setOnClickListener {
             showDatePickerDialog()
@@ -49,9 +64,11 @@ class CustomDialogFragment: DialogFragment() {
                 else -> "Expense" // Default to "Expense" if none is selected
             }
 
+            val selectedCategory = binding.spCategory.selectedItem.toString()
+
             val transaction = Transaction(
                 description = title.toString(),
-                category = category,
+                category = selectedCategory,
                 date = date.toString(),
                 amount = price.toString().toIntOrNull() ?: 0,
                 type = type)
@@ -93,11 +110,13 @@ class CustomDialogFragment: DialogFragment() {
 
     companion object{
         private const val CATEGORY = "category"
+        private const val IS_CATEGORY_EDITABLE = "is_category_editable"
 
-        fun newInstance(category: String): CustomDialogFragment {
+        fun newInstance(category: String, isCategoryEditable: Boolean): CustomDialogFragment {
             val fragment = CustomDialogFragment()
             val args = Bundle()
             args.putString(CATEGORY, category)
+            args.putBoolean(IS_CATEGORY_EDITABLE, isCategoryEditable)
             fragment.arguments = args
             return fragment
         }

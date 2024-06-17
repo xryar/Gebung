@@ -22,7 +22,7 @@ class ThirdScreen : Fragment() {
         val view = binding.root
 
         binding.btnStart.setOnClickListener {
-            findNavController().navigate(R.id.action_viewPagerFragment_to_signInActivity)
+            findNavController().navigate(R.id.action_viewPagerFragment_to_mainActivity)
             onBoardingFinished()
         }
 

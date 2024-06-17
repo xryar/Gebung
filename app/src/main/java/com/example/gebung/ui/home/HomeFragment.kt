@@ -24,6 +24,9 @@ import com.example.gebung.ui.customdialog.LimitDialogFragment
 import com.example.gebung.ui.history.HistoryActivity
 import com.example.gebung.viewmodel.TransactionViewModel
 import com.example.gebung.viewmodel.ViewModelFactory
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -35,6 +38,7 @@ class HomeFragment : Fragment(), LimitDialogFragment.LimitSetListener {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var viewModel: TransactionViewModel
     private lateinit var adapter: HomeAdapter
+    private lateinit var auth: FirebaseAuth
     private val requestPermissionLauncher =
         registerForActivityResult(
             ActivityResultContracts.RequestPermission()
@@ -68,6 +72,9 @@ class HomeFragment : Fragment(), LimitDialogFragment.LimitSetListener {
         if (Build.VERSION.SDK_INT >= 33) {
             requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
         }
+        auth = Firebase.auth
+        val firebaseUser = auth.currentUser
+        binding.accountName.text = firebaseUser?.displayName.toString()
         return binding.root
     }
 
@@ -225,23 +232,23 @@ class HomeFragment : Fragment(), LimitDialogFragment.LimitSetListener {
     private fun actionListener() {
 
         binding.btnShop.setOnClickListener {
-            showDialog(getString(R.string.shop))
+            showDialog(getString(R.string.shop), false)
         }
 
         binding.btnFood.setOnClickListener {
-            showDialog(getString(R.string.food))
+            showDialog(getString(R.string.food), false)
         }
 
         binding.btnTransport.setOnClickListener {
-            showDialog(getString(R.string.transport))
+            showDialog(getString(R.string.transport), false)
         }
 
         binding.btnHealth.setOnClickListener {
-            showDialog(getString(R.string.health))
+            showDialog(getString(R.string.health), false)
         }
 
         binding.btnOther.setOnClickListener {
-            showDialog(getString(R.string.other))
+            showDialog(getString(R.string.other), true)
         }
 
         binding.tvHistory.setOnClickListener {
@@ -257,10 +264,8 @@ class HomeFragment : Fragment(), LimitDialogFragment.LimitSetListener {
 
     }
 
-    private fun showDialog(category: String) {
-        val dialog = CustomDialogFragment.newInstance(category)
-
+    private fun showDialog(category: String, isCategoryEditable: Boolean) {
+        val dialog = CustomDialogFragment.newInstance(category, isCategoryEditable)
         dialog.show(requireActivity().supportFragmentManager, "CustomDialog")
-
     }
 }

@@ -6,7 +6,7 @@
     <string name="rv_lunch">Makan Siang</string>
     <string name="rv_date">20/04/24</string>
     <string name="rv_money">Rp. 30.000</string>
-    <string name="name_account">Hi, Alexa Howard</string>
+    <string name="name_account">Hi,</string>
     <string name="greetings">Welcome Back</string>
     <string name="spending_limit">Spending Limit</string>
     <string name="main_money">Rp.1.000.000</string>
@@ -62,7 +62,7 @@
     <!---  Edit Profile  -->
     <string name="save">Save</string>
     <string name="price">Price</string>
-    <string name="date">00/00/0000</string>
+    <string name="date">Date</string>
     <string name="title">Title</string>
     <string name="dialog_title">+ Add New</string>
 
@@ -104,9 +104,12 @@
     <string name="inside_circle">3 of 7</string>
     <string name="other">Other</string>
     <string name="health">Health</string>
-    <string name="transport">Transport</string>
+    <string name="transport">Transportation</string>
     <string name="food">Food</string>
-    <string name="shop">Shop</string>
+    <string name="shop">Shopping</string>
     <string name="predicted_expenses_for_n_next_month">Predicted Expenses For\n Next Month</string>
     <string name="set_date">Atur Tanggal</string>
+    
+    <string name="your_web_client_id">228244129517-k4m4i252lklddnbgksrldj3kcg3qnsgt.apps.googleusercontent.com</string>
+
 </resources>

@@ -60,14 +60,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ed_title"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_category"
+        <Spinner
+            android:id="@+id/sp_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:inputType="text"
-            android:ems="10"
-            android:hint="@string/enter_your_category"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -84,7 +82,7 @@
             android:layout_marginStart="28dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ed_category"/>
+            app:layout_constraintTop_toBottomOf="@id/sp_category"/>
 
         <TextView
             android:id="@+id/label_date"
@@ -107,7 +105,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:hint="@string/date"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="22dp"
