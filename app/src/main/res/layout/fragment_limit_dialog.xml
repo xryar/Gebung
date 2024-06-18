@@ -10,7 +10,7 @@
         android:id="@+id/ed_limit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Your Limit"
+        android:hint="@string/hint_limit"
         android:inputType="number"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
