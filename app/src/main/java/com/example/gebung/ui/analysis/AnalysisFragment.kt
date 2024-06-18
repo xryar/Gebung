@@ -25,6 +25,8 @@ import java.io.FileInputStream
 import java.nio.MappedByteBuffer
 import java.nio.channels.FileChannel
 import java.text.NumberFormat
+import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 
 class AnalysisFragment : Fragment() {
@@ -69,7 +71,14 @@ class AnalysisFragment : Fragment() {
             }
         }
 
+        binding.tvDate.text = getMonthName(Date())
+
         return binding.root
+    }
+
+    private fun getMonthName(date: Date): String {
+        val dateFormat = SimpleDateFormat("MMMM yyyy", Locale.getDefault())
+        return dateFormat.format(date)
     }
 
     private fun loadModelFile(): MappedByteBuffer{

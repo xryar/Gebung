@@ -35,9 +35,6 @@
             android:name=".ui.about.AboutActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.editprofile.EditProfileActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.signup.SignUpActivity"
             android:exported="false" />
         <activity
