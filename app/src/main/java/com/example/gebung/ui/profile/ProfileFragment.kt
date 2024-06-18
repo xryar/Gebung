@@ -1,23 +1,18 @@
 package com.example.gebung.ui.profile
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.credentials.ClearCredentialStateRequest
-import androidx.credentials.CredentialManager
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import com.example.gebung.databinding.FragmentProfileBinding
 import com.example.gebung.ui.about.AboutActivity
 import com.example.gebung.ui.customdialog.LogoutDialogFragment
-import com.example.gebung.ui.editprofile.EditProfileActivity
-import com.example.gebung.ui.signin.SignInActivity
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
-import kotlinx.coroutines.launch
 
 class ProfileFragment : Fragment() {
 
@@ -45,9 +40,26 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
         }
 
+        binding.cvContactUs.setOnClickListener {
+            sendEmail()
+        }
+
         binding.cvLogoutProfile.setOnClickListener {
             showDialog()
         }
+    }
+
+    private fun sendEmail() {
+        val recipient = "example@example.com" // Ganti dengan email tujuan
+        val subject = "Subject Text"
+
+        val intent = Intent(Intent.ACTION_SENDTO).apply {
+            data = Uri.parse("mailto:") // Hanya aplikasi email yang harus menangani ini
+            putExtra(Intent.EXTRA_EMAIL, arrayOf(recipient))
+            putExtra(Intent.EXTRA_SUBJECT, subject)
+        }
+
+        startActivity(intent)
     }
 
     private fun showDialog() {

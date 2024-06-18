@@ -35,9 +35,6 @@
             android:name=".ui.about.AboutActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.editprofile.EditProfileActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.signup.SignUpActivity"
             android:exported="false" />
         <activity
@@ -45,8 +42,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name" />
+            android:exported="true" />
 
         <receiver android:name=".ui.customdialog.AlarmReceiver"/>
     </application>
