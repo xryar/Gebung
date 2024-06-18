@@ -62,6 +62,7 @@ class NotificationDialogFragment : DialogFragment() {
             timeInMillis = System.currentTimeMillis()
             set(Calendar.HOUR_OF_DAY, 7)
             set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
         }
 
         val alarmIntent = Intent(requireContext(), AlarmReceiver::class.java)

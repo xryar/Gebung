@@ -134,8 +134,8 @@ class HomeFragment : Fragment(), LimitDialogFragment.LimitSetListener {
 
         val notification = NotificationCompat.Builder(requireContext(), channelId)
             .setSmallIcon(R.drawable.ic_notifications_black_24dp)
-            .setContentTitle("Limit Exceeded")
-            .setContentText("Oi oi oi")
+            .setContentTitle("You reached your expense limit!")
+            .setContentText("Your transaction has exceeded the limit you set, please set over your expense limit to maintain your stability")
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .build()
 

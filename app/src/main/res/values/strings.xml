@@ -118,4 +118,7 @@
     <string name="close_notification">Close</string>
     <string name="money">0</string>
     <string name="analysis_date">December 2024</string>
+    <string name="percent">0%</string>
+    <string name="hint_limit">Enter Your Limit</string>
+    <string name="logout_info">Are you sure to logout\n your accout?</string>
 </resources>
