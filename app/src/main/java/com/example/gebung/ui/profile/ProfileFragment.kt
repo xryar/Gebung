@@ -50,11 +50,11 @@ class ProfileFragment : Fragment() {
     }
 
     private fun sendEmail() {
-        val recipient = "example@example.com" // Ganti dengan email tujuan
+        val recipient = "example@example.com"
         val subject = "Subject Text"
 
         val intent = Intent(Intent.ACTION_SENDTO).apply {
-            data = Uri.parse("mailto:") // Hanya aplikasi email yang harus menangani ini
+            data = Uri.parse("mailto:")
             putExtra(Intent.EXTRA_EMAIL, arrayOf(recipient))
             putExtra(Intent.EXTRA_SUBJECT, subject)
         }
