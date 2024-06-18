@@ -47,6 +47,8 @@
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name" />
+
+        <receiver android:name=".ui.customdialog.AlarmReceiver"/>
     </application>
 
 </manifest>
