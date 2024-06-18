@@ -89,7 +89,7 @@ class HomeFragment : Fragment(), LimitDialogFragment.LimitSetListener {
 
 
     private fun updateCircularProgressBar(){
-        val count = SharedPreferencesHelper.getTransactionDatesInCurrentWeek(requireContext()).size
+        val count = SharedPreferencesHelper.getTransactionDatesInNext7Days(requireContext()).size
         Log.d("HomeFragment", "Current week transaction count: $count")
         val progress = (count / 7.0) * 100
         binding.circularProgressBar.progress = progress.toInt()

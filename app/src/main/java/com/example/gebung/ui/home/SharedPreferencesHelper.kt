@@ -34,25 +34,27 @@ object SharedPreferencesHelper {
         Log.d("SharedPreferencesHelper", "Transaction dates reset")
     }
 
-    fun getTransactionDatesInCurrentWeek(context: Context): Set<String> {
+    fun getTransactionDatesInNext7Days(context: Context): Set<String> {
         val dates = getTransactionDates(context)
-        val currentWeekDates = dates.filter { isInCurrentWeek(it) }.toSet()
-        Log.d("SharedPreferencesHelper", "Current week dates: $currentWeekDates")
-        // Optionally, clean up old dates that are not in the current week
-        if (currentWeekDates.size != dates.size) {
+        val next7DaysDates = dates.filter { isInNext7Days(it) }.toSet()
+        Log.d("SharedPreferencesHelper", "Next 7 days dates: $next7DaysDates")
+        // Optionally, clean up old dates that are not in the next 7 days
+        if (next7DaysDates.size != dates.size) {
             val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-            prefs.edit().putStringSet(KEY_DATES, currentWeekDates).apply()
+            prefs.edit().putStringSet(KEY_DATES, next7DaysDates).apply()
         }
-        return currentWeekDates
+        return next7DaysDates
     }
 
-    private fun isInCurrentWeek(date: String): Boolean {
+    private fun isInNext7Days(date: String): Boolean {
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val inputDate = dateFormat.parse(date) ?: return false
+
         val calendar = Calendar.getInstance()
         calendar.time = inputDate
-        val currentWeek = Calendar.getInstance().get(Calendar.WEEK_OF_YEAR)
-        val inputWeek = calendar.get(Calendar.WEEK_OF_YEAR)
-        return currentWeek == inputWeek
+        val today = Calendar.getInstance().time
+
+        val diff = (calendar.time.time - today.time) / (1000 * 60 * 60 * 24)
+        return diff in 0..6
     }
 }
