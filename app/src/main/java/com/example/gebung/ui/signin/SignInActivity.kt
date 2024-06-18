@@ -194,7 +194,11 @@ class SignInActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         val currentUser = auth.currentUser
-        updateUI(currentUser)
+        val justSignedUp = intent.getBooleanExtra("JustSignUp", false)
+
+        if (!justSignedUp){
+            updateUI(currentUser)
+        }
     }
 
     companion object{
