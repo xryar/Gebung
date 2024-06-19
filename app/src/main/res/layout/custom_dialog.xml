@@ -17,6 +17,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/black"
+            android:fontFamily="@font/robotoregular"
             android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -29,6 +30,7 @@
             android:text="@string/title"
             android:textSize="16sp"
             android:textColor="@color/gray"
+            android:fontFamily="@font/poppinsregular"
             android:layout_marginStart="28dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,6 +44,7 @@
             android:inputType="text"
             android:ems="10"
             android:hint="@string/enter_your_title"
+            android:fontFamily="@font/latoregular"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -55,6 +58,7 @@
             android:text="@string/category"
             android:textSize="16sp"
             android:textColor="@color/gray"
+            android:fontFamily="@font/poppinsregular"
             android:layout_marginStart="28dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -79,6 +83,7 @@
             android:text="@string/date"
             android:textSize="16sp"
             android:textColor="@color/gray"
+            android:fontFamily="@font/poppinsregular"
             android:layout_marginStart="28dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -93,6 +98,7 @@
             android:textColor="@color/main_background"
             android:textStyle="bold"
             android:textSize="18sp"
+            android:fontFamily="@font/latoregular"
             android:gravity="start|center"
             android:layout_marginStart="28dp"
             app:drawableStartCompat="@drawable/ic_date"
@@ -117,6 +123,7 @@
             android:text="@string/price"
             android:textSize="16sp"
             android:textColor="@color/gray"
+            android:fontFamily="@font/poppinsregular"
             android:layout_marginStart="28dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -130,6 +137,7 @@
             android:inputType="number"
             android:ems="10"
             android:hint="@string/enter_your_price"
+            android:fontFamily="@font/latoregular"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -144,6 +152,7 @@
             android:text="@string/type"
             android:textSize="16sp"
             android:textColor="@color/gray"
+            android:fontFamily="@font/poppinsregular"
             android:layout_marginStart="28dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -164,14 +173,16 @@
                 android:id="@+id/radio_income"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/income"/>
+                android:text="@string/income"
+                android:fontFamily="@font/robotoregular"/>
 
             <RadioButton
                 android:id="@+id/radio_expense"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="55dp"
-                android:text="@string/expense"/>
+                android:text="@string/expense"
+                android:fontFamily="@font/robotoregular"/>
 
         </RadioGroup>
 
@@ -180,6 +191,7 @@
             android:layout_width="245dp"
             android:layout_height="wrap_content"
             android:text="@string/save"
+            android:fontFamily="@font/opensansregular"
             android:layout_marginTop="20dp"
             android:textColor="@color/white"
             android:backgroundTint="@color/button_color"
@@ -194,6 +206,7 @@
             android:text="@string/cancel"
             android:layout_marginTop="20dp"
             android:textColor="@color/white"
+            android:fontFamily="@font/opensansregular"
             android:backgroundTint="@color/button_color"
             android:layout_marginBottom="16dp"
             app:layout_constraintStart_toStartOf="parent"
