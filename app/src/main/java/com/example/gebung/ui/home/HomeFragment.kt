@@ -5,6 +5,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -13,9 +14,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gebung.R
@@ -29,6 +31,9 @@ import com.example.gebung.viewmodel.ViewModelFactory
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt
+import uk.co.samuelwall.materialtaptargetprompt.extras.backgrounds.CirclePromptBackground
+import uk.co.samuelwall.materialtaptargetprompt.extras.focals.CirclePromptFocal
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -54,6 +59,7 @@ class HomeFragment : Fragment(), LimitDialogFragment.LimitSetListener {
 
     private var savedLimit: Int = 0
     private var mCurrencyFormat = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
+    private var currentPrompt: MaterialTapTargetPrompt ?= null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -63,7 +69,7 @@ class HomeFragment : Fragment(), LimitDialogFragment.LimitSetListener {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         val factory = ViewModelFactory(requireActivity().application)
-        // Gunakan ViewModelFactory saat membuat instance dari TransactionViewModel
+
         viewModel = ViewModelProvider(this, factory)[TransactionViewModel::class.java]
         adapter = HomeAdapter()
         showRecyclerView()
@@ -77,7 +83,55 @@ class HomeFragment : Fragment(), LimitDialogFragment.LimitSetListener {
         auth = Firebase.auth
         val firebaseUser = auth.currentUser
         binding.accountName.text = firebaseUser?.displayName.toString()
+
+        showButtonPromptsSequentially()
         return binding.root
+    }
+
+    private fun showButtonPromptsSequentially() {
+        val prefManager = activity?.getPreferences(Context.MODE_PRIVATE)
+        if (prefManager != null) {
+            if (!prefManager.getBoolean("didShowPrompt", false)) {
+                val prefEditor = prefManager.edit()
+                prefEditor.putBoolean("didShowPrompt", true).apply()
+                val views = listOf(binding.ibNotification, binding.btnLimit, binding.btnShop, binding.btnOther)
+                val titles = listOf("Notification", "Set limit", "Shop", "Other")
+                val descriptions = listOf("Description 1", "Description 2", "Description 3", "Description 4")
+                showNextButtonPrompt(views, titles, descriptions, 0)
+            }
+        }
+    }
+
+    private fun showNextButtonPrompt(views: List<View>, titles: List<String>, descriptions: List<String>, index: Int) {
+        currentPrompt?.dismiss()
+        if (index < views.size) {
+            val view = views[index]
+            val title = titles[index]
+            val description = descriptions[index]
+            MaterialTapTargetPrompt.Builder(activity as AppCompatActivity)
+                .setTarget(view)
+                .setPrimaryText(title)
+                .setSecondaryText(description)
+                .setBackButtonDismissEnabled(true)
+                .setPromptBackground(CirclePromptBackground())
+                .setPromptFocal(CirclePromptFocal())
+                .setPromptStateChangeListener { prompt, state ->
+                    if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED ||
+                        state == MaterialTapTargetPrompt.STATE_NON_FOCAL_PRESSED ||
+                        state == MaterialTapTargetPrompt.STATE_BACK_BUTTON_PRESSED) {
+                        prompt.dismiss()
+                    }
+                    if (state == MaterialTapTargetPrompt.STATE_DISMISSED ||
+                        state == MaterialTapTargetPrompt.STATE_FINISHED ||
+                        state == MaterialTapTargetPrompt.STATE_FINISHING){
+                        currentPrompt = null
+                        view.postDelayed({
+                            showNextButtonPrompt(views, titles, descriptions, index + 1)
+                        },  100)
+                    }
+                }
+                .show()
+        }
     }
 
     override fun onResume() {
