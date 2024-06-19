@@ -36,6 +36,7 @@
             android:text="@string/rv_lunch"
             android:textSize="18sp"
             android:textColor="@color/white"
+            android:fontFamily="@font/robotoregular"
             android:layout_marginTop="1dp"
             android:layout_marginStart="13dp"
             app:layout_constraintStart_toEndOf="@id/img_info"
@@ -48,6 +49,7 @@
             android:text="@string/rv_date"
             android:textSize="12sp"
             android:textColor="@color/white"
+            android:fontFamily="@font/robotoregular"
             android:layout_marginStart="13dp"
             android:layout_marginTop="2dp"
             app:layout_constraintStart_toEndOf="@id/img_info"
@@ -60,6 +62,7 @@
             android:text="@string/rv_money"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:fontFamily="@font/robotoregular"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
