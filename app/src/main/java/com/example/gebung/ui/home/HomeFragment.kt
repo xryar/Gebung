@@ -96,7 +96,7 @@ class HomeFragment : Fragment(), LimitDialogFragment.LimitSetListener {
                 prefEditor.putBoolean("didShowPrompt", true).apply()
                 val views = listOf(binding.ibNotification, binding.btnLimit, binding.btnShop, binding.btnOther)
                 val titles = listOf("Notification", "Set limit", "Shop", "Other")
-                val descriptions = listOf("Description 1", "Description 2", "Description 3", "Description 4")
+                val descriptions = listOf("Turn on your daily reminder", "Set your limit", "Record your expenses by category", "Record expenses and income with other categories")
                 showNextButtonPrompt(views, titles, descriptions, 0)
             }
         }

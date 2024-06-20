@@ -27,7 +27,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:backgroundTint="@color/tour_background"
-        app:cardCornerRadius="50dp">
+        app:cardCornerRadius="50dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -37,10 +39,10 @@
                 android:id="@+id/iv_menu_on"
                 android:layout_width="20dp"
                 android:layout_height="15dp"
-                android:src="@drawable/ic_menuon"
                 android:layout_marginTop="18dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:src="@drawable/ic_menuon"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription" />
 
@@ -48,9 +50,9 @@
                 android:id="@+id/iv_menu_off"
                 android:layout_width="20dp"
                 android:layout_height="15dp"
-                android:src="@drawable/ic_menuoff"
-                android:layout_marginTop="18dp"
                 android:layout_marginStart="6dp"
+                android:layout_marginTop="18dp"
+                android:src="@drawable/ic_menuoff"
                 app:layout_constraintStart_toEndOf="@id/iv_menu_on"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription" />
@@ -59,41 +61,43 @@
                 android:id="@+id/tv_title_firstscreen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tour1_title"
-                android:textSize="22sp"
-                android:textColor="@color/tour_textcolor"
-                android:textStyle="bold"
-                android:fontFamily="@font/montserratregular"
                 android:layout_marginTop="18dp"
-                app:layout_constraintTop_toBottomOf="@id/iv_menu_on"
+                android:fontFamily="@font/montserratregular"
+                android:text="@string/tour1_title"
+                android:textAlignment="center"
+                android:textColor="@color/tour_textcolor"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/iv_menu_on" />
 
             <TextView
                 android:id="@+id/tv_description_firstscreen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tour1_description"
-                android:textSize="25sp"
-                android:textColor="@color/tour_textcolor"
-                android:fontFamily="@font/poppinsregular"
-                android:textAlignment="center"
-                android:lineSpacingExtra="4dp"
                 android:layout_marginTop="24dp"
-                app:layout_constraintTop_toBottomOf="@id/tv_title_firstscreen"
+                android:fontFamily="@font/poppinsregular"
+                android:lineSpacingExtra="4dp"
+                android:text="@string/tour1_description"
+                android:textAlignment="center"
+                android:textColor="@color/tour_textcolor"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/tv_title_firstscreen" />
 
             <ImageView
                 android:id="@+id/iv_next_firstscreen"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_next"
-                android:layout_marginEnd="30dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/ic_next"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_description_firstscreen"
-                app:layout_constraintBottom_toBottomOf="parent"
                 tools:ignore="ContentDescription" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

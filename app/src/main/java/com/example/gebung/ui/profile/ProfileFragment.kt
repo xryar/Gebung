@@ -50,8 +50,8 @@ class ProfileFragment : Fragment() {
     }
 
     private fun sendEmail() {
-        val recipient = "example@example.com"
-        val subject = "Subject Text"
+        val recipient = "a211d4ky4433@bangkit.academy"
+        val subject = "Contact us / Feedback"
 
         val intent = Intent(Intent.ACTION_SENDTO).apply {
             data = Uri.parse("mailto:")

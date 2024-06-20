@@ -21,9 +21,9 @@
 
     <!--  OnBoarding  -->
     <string name="tour1_title">Welcome To Gebung!</string>
-    <string name="tour1_description">Gebung is a personal finance\n management application crafted\n to empower users in efficiently\n managing their financial\n resources.</string>
-    <string name="tour2_title">Want To Manage Finances\n Easily?</string>
-    <string name="tour2_description">Try all the features available on\n Gebung and enjoy various\n conveniences in managing your\n finances</string>
+    <string name="tour1_description">Gebung is a personal finance management application crafted to empower users in efficiently managing their financial resources.</string>
+    <string name="tour2_title">Want To Manage Finances Easily?</string>
+    <string name="tour2_description">Try all the features available on Gebung and enjoy various conveniences in managing your finances</string>
     <string name="welcome_title">Welcome To \nGebung</string>
     <string name="welcome_description">let\'s organize your finances</string>
     <string name="welcome_button">Start</string>
