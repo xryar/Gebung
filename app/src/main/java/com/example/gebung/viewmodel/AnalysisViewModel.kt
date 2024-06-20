@@ -1,4 +1,4 @@
-package com.example.gebung.ui.analysis
+package com.example.gebung.viewmodel
 
 import android.app.Application
 import android.os.Build
@@ -62,7 +62,7 @@ class AnalysisViewModel(application: Application) : ViewModel() {
             return outputBuffer[0]
         } catch (e: IllegalArgumentException) {
             Log.e("AnalysisFragment", "Error during prediction: ${e.message}")
-            return FloatArray(0) // Return an empty array or handle it accordingly
+            return FloatArray(0)
         }
     }
 

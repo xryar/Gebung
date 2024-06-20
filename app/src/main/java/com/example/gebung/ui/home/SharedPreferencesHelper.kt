@@ -17,7 +17,7 @@ object SharedPreferencesHelper {
 
         if (!dates.contains(date)) {
             dates.add(date)
-            prefs.edit().putStringSet(KEY_DATES, dates).apply() // Change apply() to commit()
+            prefs.edit().putStringSet(KEY_DATES, dates).apply()
             Log.d("SharedPreferencesHelper", "Added date: $date")
         }
         Log.d("SharedPreferencesHelper", "Current week dates: $dates")
@@ -38,7 +38,6 @@ object SharedPreferencesHelper {
         val dates = getTransactionDates(context)
         val next7DaysDates = dates.filter { isInNext7Days(it) }.toSet()
         Log.d("SharedPreferencesHelper", "Next 7 days dates: $next7DaysDates")
-        // Optionally, clean up old dates that are not in the next 7 days
         if (next7DaysDates.size != dates.size) {
             val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
             prefs.edit().putStringSet(KEY_DATES, next7DaysDates).apply()

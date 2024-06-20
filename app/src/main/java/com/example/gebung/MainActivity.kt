@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         if (supportFragmentManager.backStackEntryCount > 0) {
+            @Suppress("DEPRECATION")
             super.onBackPressed()
         } else {
             moveTaskToBack(true)

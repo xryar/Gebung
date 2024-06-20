@@ -53,6 +53,7 @@
         android:layout_width="160dp"
         android:layout_height="49dp"
         android:text="@string/welcome_button"
+        android:textColor="@color/white"
         android:fontFamily="@font/poetsenoneregular"
         android:backgroundTint="@color/button_welcome"
         android:layout_marginTop="60dp"

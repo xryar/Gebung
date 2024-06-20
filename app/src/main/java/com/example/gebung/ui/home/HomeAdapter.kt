@@ -38,7 +38,7 @@ class HomeAdapter: RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
                 val iconRes = when (listTransaction.type) {
                     "Income" -> R.drawable.ic_income
                     "Expense" -> R.drawable.ic_expense
-                    else -> R.drawable.ic_expense // Add a default image if necessary
+                    else -> R.drawable.ic_expense
                 }
                 imgInfo.setImageResource(iconRes)
             }
