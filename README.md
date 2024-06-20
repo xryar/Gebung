@@ -24,6 +24,7 @@ Gebung is a personal finance management application designed to empower users in
 - View Binding : Instead of inflating views manually, view binding will take care of that.
 - TensorFlow Lite : Used for on-device machine learning tasks, such as predicting future expenses based on past spending patterns.
 - MPAndroidChart : Library for Android to visualize financial data through various types of charts (bar, line, pie, etc.).
+- Firebase : Provides backend services such as user authentication
 - Tap Target Prompt : Guide users through the app by highlighting specific features and providing contextual instructions.
 <br/>
 <br/>
