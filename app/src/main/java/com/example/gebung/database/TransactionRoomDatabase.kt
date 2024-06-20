@@ -21,7 +21,7 @@ abstract class TransactionRoomDatabase : RoomDatabase() {
                 synchronized(TransactionRoomDatabase::class.java) {
                     INSTANCE = Room.databaseBuilder(
                         context.applicationContext,
-                        TransactionRoomDatabase::class.java, "food_database")
+                        TransactionRoomDatabase::class.java, "transaction_database")
                         .build()
                 }
             }

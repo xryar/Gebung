@@ -17,8 +17,8 @@ class NotificationDialogFragment : DialogFragment() {
     private lateinit var alarmManager: AlarmManager
     private lateinit var pendingIntent: PendingIntent
     private lateinit var binding: FragmentNotificationDialogBinding
-    private val PREFS_NAME = "MyPrefs"
-    private val SWITCH_STATUS_KEY = "switchStatus"
+    private val prefsName = "MyPrefs"
+    private val switchStatusKey = "switchStatus"
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(requireActivity())
         val inflater = requireActivity().layoutInflater
@@ -37,10 +37,8 @@ class NotificationDialogFragment : DialogFragment() {
             saveSwitchStatus(isChecked)
             if (isChecked){
                 scheduleAlarm()
-                Toast.makeText(requireContext(), "Reminder Enabled", Toast.LENGTH_SHORT).show()
             }else{
                 cancelAlarm()
-                Toast.makeText(requireContext(), "Reminder Canceled", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -76,20 +74,22 @@ class NotificationDialogFragment : DialogFragment() {
             AlarmManager.INTERVAL_DAY,
             pendingIntent
         )
+        Toast.makeText(requireContext(), "Reminder Enabled", Toast.LENGTH_SHORT).show()
     }
 
     private fun cancelAlarm(){
         alarmManager.cancel(pendingIntent)
+        Toast.makeText(requireContext(), "Reminder Canceled", Toast.LENGTH_SHORT).show()
     }
 
     private fun saveSwitchStatus(enabled: Boolean){
-        val prefs = requireContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        prefs.edit().putBoolean(SWITCH_STATUS_KEY, enabled).apply()
+        val prefs = requireContext().getSharedPreferences(prefsName, Context.MODE_PRIVATE)
+        prefs.edit().putBoolean(switchStatusKey, enabled).apply()
     }
 
     private fun loadSwitchStatus(): Boolean {
-        val prefs = requireContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        return prefs.getBoolean(SWITCH_STATUS_KEY, false)
+        val prefs = requireContext().getSharedPreferences(prefsName, Context.MODE_PRIVATE)
+        return prefs.getBoolean(switchStatusKey, false)
     }
 
 }

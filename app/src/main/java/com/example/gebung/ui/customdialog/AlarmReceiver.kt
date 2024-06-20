@@ -24,7 +24,7 @@ class AlarmReceiver : BroadcastReceiver() {
         auth = Firebase.auth
         val firebaseUser = auth.currentUser
 
-        val notificationManager = context?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         val channelId = "Gebung Reminder"
         val builder = NotificationCompat.Builder(context,channelId)

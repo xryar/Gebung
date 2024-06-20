@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.gebung.database.MonthlyTotal
 import com.example.gebung.database.Prediction
 import com.example.gebung.databinding.FragmentAnalysisBinding
+import com.example.gebung.viewmodel.AnalysisViewModel
 import com.example.gebung.viewmodel.ViewModelFactory
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis

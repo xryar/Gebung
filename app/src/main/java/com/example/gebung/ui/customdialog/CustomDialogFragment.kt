@@ -26,7 +26,6 @@ class CustomDialogFragment: DialogFragment() {
         binding = CustomDialogBinding.inflate(inflater, null, false)
 
         val factory = ViewModelFactory(requireActivity().application)
-        // Gunakan ViewModelFactory saat membuat instance dari TransactionViewModel
         viewModel = ViewModelProvider(this, factory)[TransactionViewModel::class.java]
 
         val category = arguments?.getString(CATEGORY) ?: ""
@@ -60,7 +59,7 @@ class CustomDialogFragment: DialogFragment() {
             val type = when (radioGroup.checkedRadioButtonId) {
                 radioButtonIncome.id -> "Income"
                 radioButtonExpense.id -> "Expense"
-                else -> "Expense" // Default to "Expense" if none is selected
+                else -> "Expense"
             }
 
             val selectedCategory = binding.spCategory.selectedItem.toString()

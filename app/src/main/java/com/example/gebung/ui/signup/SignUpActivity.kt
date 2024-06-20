@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -95,6 +96,7 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun firebaseAuthWithGoogle(idToken: String) {
+        showLoading(true)
         val credential: AuthCredential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
@@ -102,16 +104,18 @@ class SignUpActivity : AppCompatActivity() {
                     Log.d(TAG, "signInWithCredential:success")
                     val user: FirebaseUser? = auth.currentUser
                     updateUI(user)
+                    showLoading(false)
                 }else{
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
                     updateUI(null)
+                    showLoading(false)
                 }
             }
     }
 
     private fun updateUI(currentUser: FirebaseUser?) {
         if (currentUser != null){
-            AlertDialog.Builder(this@SignUpActivity).apply {
+            AlertDialog.Builder(this, R.style.CustomAlertDialogTheme).apply {
                 setTitle("Yeah!")
                 setMessage("You have successfully logged in")
                 setPositiveButton("Next"){_, _ ->
@@ -182,9 +186,11 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun registerFirebase(name: String, email: String, password: String) {
+        showLoading(true)
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this){ task ->
                 if (task.isSuccessful){
+                    showLoading(false)
                     val user = auth.currentUser
                     val profileUpdates = UserProfileChangeRequest.Builder()
                         .setDisplayName(name)
@@ -193,7 +199,7 @@ class SignUpActivity : AppCompatActivity() {
                     user?.updateProfile(profileUpdates)
                         ?.addOnCompleteListener { profileTask ->
                             if (profileTask.isSuccessful){
-                                AlertDialog.Builder(this@SignUpActivity).apply {
+                                AlertDialog.Builder(this, R.style.CustomAlertDialogTheme).apply {
                                     setTitle("Yeah")
                                     setMessage("Sign Up was successful, please Sign In")
                                     setPositiveButton("Sign In"){_, _ ->
@@ -215,6 +221,7 @@ class SignUpActivity : AppCompatActivity() {
                             }
                         }
                 } else {
+                    showLoading(false)
                     Toast.makeText(
                         this,
                         "${task.exception?.message}",
@@ -223,6 +230,10 @@ class SignUpActivity : AppCompatActivity() {
 
                 }
             }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     companion object{

@@ -5,6 +5,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
+import android.view.View
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -41,6 +43,9 @@ class SignInActivity : AppCompatActivity() {
         actionListener()
         binding.ivGoogle.setOnClickListener {
             signInGoogle()
+        }
+        binding.tvSigninForgot.setOnClickListener {
+            showForgotPasswordDialog()
         }
 
     }
@@ -81,18 +86,17 @@ class SignInActivity : AppCompatActivity() {
                         Log.e(TAG, "Received an invalid google id token response", e)
                     }
                 }else{
-                    //Catch any error
                     Log.d(TAG, "Unexpected type of credential")
                 }
             }
             else ->{
-                //Catch any error
                 Log.d(TAG, "Unexpected type of credential")
             }
         }
     }
 
     private fun firebaseAuthWithGoogle(idToken: String){
+        showLoading(true)
         val credential: AuthCredential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
@@ -100,16 +104,18 @@ class SignInActivity : AppCompatActivity() {
                     Log.d(TAG, "signInWithCredential:success")
                     val user: FirebaseUser? = auth.currentUser
                     updateUI(user)
+                    showLoading(false)
                 }else{
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
                     updateUI(null)
+                    showLoading(false)
                 }
             }
     }
 
     private fun updateUI(currentUser: FirebaseUser?){
         if (currentUser != null){
-            AlertDialog.Builder(this@SignInActivity).apply {
+            AlertDialog.Builder(this, R.style.CustomAlertDialogTheme).apply {
                 setTitle("Yeah!")
                 setMessage("You have successfully logged in")
                 setPositiveButton("Next"){_, _ ->
@@ -173,20 +179,23 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun loginFirebase(email: String, password: String) {
+        showLoading(true)
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val user: FirebaseUser? = auth.currentUser
                     updateUI(user)
-
+                    showLoading(false)
                 } else {
                     Toast.makeText(this, "${task.exception?.message}", Toast.LENGTH_SHORT).show()
                     updateUI(null)
+                    showLoading(false)
                 }
             }
     }
 
     override fun onBackPressed() {
+        @Suppress("DEPRECATION")
         super.onBackPressed()
         moveTaskToBack(true)
     }
@@ -199,6 +208,42 @@ class SignInActivity : AppCompatActivity() {
         if (!justSignedUp){
             updateUI(currentUser)
         }
+    }
+
+    private fun showForgotPasswordDialog(){
+        val builder = AlertDialog.Builder(this, R.style.CustomAlertDialogTheme)
+        builder.setTitle("Forgot Password")
+        val view = layoutInflater.inflate(R.layout.dialog_forgot_password, null)
+        val emailEditText = view.findViewById<EditText>(R.id.etEmail)
+        builder.setView(view)
+        builder.setPositiveButton("Reset Password"){ _, _ ->
+            val email = emailEditText.text.toString()
+            if (email.isEmpty()){
+                Toast.makeText(this, "Please enter your email", Toast.LENGTH_SHORT).show()
+                return@setPositiveButton
+            }
+            resetPassword(email)
+        }
+        builder.setNegativeButton("Cancel", null)
+        builder.show()
+    }
+
+    private fun resetPassword(email: String){
+        showLoading(true)
+        auth.sendPasswordResetEmail(email)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful){
+                    Toast.makeText(this, "Reset password email sent", Toast.LENGTH_SHORT).show()
+                    showLoading(false)
+                }else{
+                    Toast.makeText(this, "Error: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                    showLoading(false)
+                }
+            }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     companion object{
