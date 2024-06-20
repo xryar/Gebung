@@ -18,8 +18,7 @@
         <action
             android:id="@+id/action_splashFragment_to_mainActivity"
             app:destination="@id/mainActivity"
-            app:popUpTo="@id/splashFragment"
-            app:popUpToInclusive="true" />
+            app:popUpTo="@id/splashFragment" />
     </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"

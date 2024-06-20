@@ -130,6 +130,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/set_limit"
+                android:textColor="@color/white"
                 android:fontFamily="@font/opensansregular"
                 android:layout_marginTop="15dp"
                 android:backgroundTint="@color/button_color"

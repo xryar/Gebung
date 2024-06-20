@@ -61,7 +61,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
-        moveTaskToBack(true)
+        if (supportFragmentManager.backStackEntryCount > 0) {
+            super.onBackPressed()
+        } else {
+            moveTaskToBack(true)
+        }
     }
 }
